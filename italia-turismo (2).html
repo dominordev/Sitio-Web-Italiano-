@@ -1,0 +1,2321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Italia Eterna — La Guía que un Italiano te Daría</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --verde:    #0e3320;
+  --verde2:   #1a5c38;
+  --rojo:     #b8001f;
+  --crema:    #f7f2e9;
+  --crema2:   #ede5d2;
+  --oro:      #c9972b;
+  --oro2:     #f0c45a;
+  --carbon:   #111;
+  --carbon2:  #1e1e1e;
+  --gris:     #666;
+  --blanco:   #fefef8;
+  --azul:     #1b3a5c;
+  --terracota:#b5461a;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--crema);
+  color: var(--carbon);
+  font-family: 'EB Garamond', serif;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ════════════════════════════════════
+   CUSTOM CURSOR
+════════════════════════════════════ */
+.cursor-dot {
+  width: 8px; height: 8px; background: var(--rojo);
+  border-radius: 50%; position: fixed; top:0; left:0;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform .1s;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(185,0,31,0.5);
+  border-radius: 50%; position: fixed; top:0; left:0;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: transform .18s, width .3s, height .3s, opacity .3s;
+}
+
+/* ════════════════════════════════════
+   NOISE OVERLAY
+════════════════════════════════════ */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 9990;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+}
+
+/* ════════════════════════════════════
+   NAV
+════════════════════════════════════ */
+nav {
+  position: fixed; top:0; width:100%; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 1.4rem 5rem;
+  transition: background .4s, padding .4s;
+}
+nav.scrolled {
+  background: rgba(247,242,233,0.96);
+  backdrop-filter: blur(16px);
+  padding: 0.9rem 5rem;
+  border-bottom: 1px solid rgba(201,151,43,0.18);
+}
+.nav-logo {
+  font-family: 'Abril Fatface', serif;
+  font-size: 1.6rem; color: var(--blanco);
+  letter-spacing: -0.01em; transition: color .4s;
+}
+nav.scrolled .nav-logo { color: var(--verde); }
+.nav-links { display:flex; gap:2.5rem; list-style:none; }
+.nav-links a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  text-decoration: none; color: rgba(255,255,255,0.7);
+  transition: color .25s;
+}
+nav.scrolled .nav-links a { color: var(--carbon); }
+.nav-links a:hover { color: var(--oro) !important; }
+.nav-cta {
+  background: var(--rojo); color: #fff !important;
+  padding: 0.55rem 1.4rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem !important; letter-spacing: 0.15em !important;
+  text-transform: uppercase; transition: background .25s !important;
+}
+.nav-cta:hover { background: #8b0016 !important; color: #fff !important; }
+
+/* ════════════════════════════════════
+   HERO
+════════════════════════════════════ */
+.hero {
+  height: 100vh; min-height: 700px;
+  background: var(--carbon);
+  display:flex; align-items:center; justify-content:center;
+  position:relative; overflow:hidden;
+}
+.hero-video-bg {
+  position:absolute; inset:0; z-index:0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.6) 100%),
+    linear-gradient(135deg, #0b1f10 0%, #1a3a22 25%, #0d2b3a 55%, #1a0a05 85%, #2a0d05 100%);
+}
+/* Animated color shapes */
+.hero-shape {
+  position:absolute; border-radius:50%;
+  filter: blur(80px); mix-blend-mode: screen;
+  animation: floatShape 10s infinite alternate ease-in-out;
+}
+.hs1 { width:60vw; height:60vw; top:-10%; left:-10%; background: radial-gradient(circle, rgba(26,92,56,0.5) 0%, transparent 70%); animation-delay:0s; }
+.hs2 { width:50vw; height:50vw; bottom:-15%; right:-5%; background: radial-gradient(circle, rgba(27,58,92,0.5) 0%, transparent 70%); animation-delay:-4s; }
+.hs3 { width:35vw; height:35vw; top:30%; right:20%; background: radial-gradient(circle, rgba(181,70,26,0.25) 0%, transparent 70%); animation-delay:-7s; }
+@keyframes floatShape {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(3%, 5%) scale(1.08); }
+}
+
+/* Italian flag stripe — left side vertical */
+.hero-flag {
+  position:absolute; left:0; top:0; bottom:0; width:6px;
+  display:flex; flex-direction:column; z-index:2;
+}
+.hero-flag span { flex:1; }
+.hf-g { background: var(--verde2); }
+.hf-w { background: #fff; }
+.hf-r { background: var(--rojo); }
+
+/* Decorative text watermark */
+.hero-watermark {
+  position:absolute; right:-2%; top:50%; transform:translateY(-50%);
+  font-family:'Abril Fatface', serif;
+  font-size: clamp(12rem, 25vw, 22rem);
+  color: rgba(255,255,255,0.03);
+  line-height:1; user-select:none; white-space:nowrap; z-index:1;
+}
+
+.hero-content {
+  position:relative; z-index:3;
+  text-align:center; padding: 2rem;
+  max-width:900px;
+}
+.hero-eyebrow {
+  font-family:'DM Sans', sans-serif;
+  font-size: 0.7rem; font-weight:500;
+  letter-spacing: 0.4em; text-transform:uppercase;
+  color: var(--oro); margin-bottom: 2rem;
+  opacity:0; animation: revealUp .8s .2s forwards;
+}
+.hero-title {
+  font-family:'Abril Fatface', serif;
+  font-size: clamp(5rem, 14vw, 12rem);
+  color: #fff; line-height: 0.88;
+  margin-bottom: 0.25em;
+  opacity:0; animation: revealUp 1s .4s forwards;
+}
+.hero-title .accent { color: var(--oro2); display:block; font-size:0.55em; font-family:'EB Garamond', serif; font-style:italic; font-weight:400; letter-spacing:0.05em; }
+.hero-sub {
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-style:italic; color:rgba(255,255,255,0.65);
+  margin-bottom:3rem;
+  opacity:0; animation: revealUp .8s .65s forwards;
+}
+.hero-btns {
+  display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap;
+  opacity:0; animation: revealUp .8s .85s forwards;
+}
+.btn-primary {
+  background: var(--rojo); color:#fff;
+  padding: 1rem 2.8rem;
+  font-family:'DM Sans', sans-serif; font-size:0.72rem;
+  font-weight:500; letter-spacing:0.2em; text-transform:uppercase;
+  text-decoration:none; transition: background .3s, transform .3s;
+}
+.btn-primary:hover { background:#8b0016; transform:translateY(-2px); }
+.btn-outline {
+  border: 1.5px solid rgba(255,255,255,0.4); color:#fff;
+  padding: 1rem 2.8rem;
+  font-family:'DM Sans', sans-serif; font-size:0.72rem;
+  font-weight:500; letter-spacing:0.2em; text-transform:uppercase;
+  text-decoration:none; transition: border-color .3s, background .3s;
+}
+.btn-outline:hover { border-color:#fff; background:rgba(255,255,255,0.08); }
+
+/* Scroll arrow */
+.hero-scroll {
+  position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:0.5rem; z-index:3;
+  opacity:0; animation: revealUp .6s 1.3s forwards;
+}
+.hero-scroll span {
+  font-family:'DM Sans', sans-serif; font-size:0.58rem;
+  letter-spacing:0.25em; text-transform:uppercase; color:rgba(255,255,255,0.35);
+}
+.hero-scroll-line {
+  width:1px; height:50px;
+  background: linear-gradient(to bottom, rgba(201,151,43,0.8), transparent);
+  animation: linePulse 2s infinite;
+}
+@keyframes linePulse {
+  0%,100% { opacity:0.4; transform:scaleY(1); }
+  50% { opacity:1; transform:scaleY(1.1); }
+}
+
+/* ════════════════════════════════════
+   STATS BAR
+════════════════════════════════════ */
+.stats-bar {
+  background: var(--verde);
+  display:grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 3px solid var(--oro);
+}
+.stat-item {
+  padding: 2.5rem 2rem; text-align:center;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  position:relative; overflow:hidden;
+}
+.stat-item:last-child { border-right:none; }
+.stat-item::after {
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+}
+.stat-num {
+  font-family:'Abril Fatface', serif;
+  font-size: 3.2rem; color: var(--oro2);
+  line-height:1; display:block;
+}
+.stat-label {
+  font-family:'DM Sans', sans-serif;
+  font-size: 0.65rem; font-weight:400; letter-spacing:0.2em;
+  text-transform:uppercase; color:rgba(255,255,255,0.55); margin-top:0.4rem;
+}
+
+/* ════════════════════════════════════
+   SECTIONS BASE
+════════════════════════════════════ */
+section { padding: 7rem 5rem; }
+.section-label {
+  font-family:'DM Sans', sans-serif;
+  font-size:0.65rem; font-weight:500; letter-spacing:0.4em;
+  text-transform:uppercase; color: var(--oro);
+  display:block; margin-bottom:0.8rem;
+}
+.section-title {
+  font-family:'Abril Fatface', serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height:1; color: var(--carbon);
+}
+.section-title.light { color:#fff; }
+.section-divider {
+  width:48px; height:3px;
+  background: var(--rojo); margin-top:1.5rem;
+}
+
+/* ════════════════════════════════════
+   INTRO — VOICE OF AN ITALIAN
+════════════════════════════════════ */
+.intro-section {
+  background: var(--blanco);
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:0; padding:0;
+  min-height:600px;
+}
+.intro-left {
+  background: var(--carbon2);
+  padding: 6rem 5rem;
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative; overflow:hidden;
+}
+.intro-left::before {
+  content:'';
+  position:absolute; bottom:-40px; right:-40px;
+  width:280px; height:280px;
+  background: radial-gradient(circle, rgba(201,151,43,0.15) 0%, transparent 70%);
+  border-radius:50%;
+}
+.intro-quote {
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  font-style:italic; color:#fff; line-height:1.45;
+  position:relative; z-index:1;
+}
+.intro-quote::before {
+  content: '"';
+  font-family:'Abril Fatface', serif;
+  font-size: 8rem; color: var(--oro); opacity:0.18;
+  position:absolute; top:-3rem; left:-1rem; line-height:1;
+  pointer-events:none;
+}
+.intro-autor {
+  margin-top:2rem; display:flex; align-items:center; gap:1rem; position:relative; z-index:1;
+}
+.intro-flag-mini {
+  width:32px; height:20px; border-radius:2px; overflow:hidden;
+  display:flex;
+}
+.intro-flag-mini span { flex:1; }
+.intro-right {
+  padding: 6rem 5rem;
+  background: var(--crema2);
+  display:flex; flex-direction:column; justify-content:center;
+}
+.intro-right p {
+  font-size:1.2rem; line-height:1.9; color:#333; margin-bottom:1.2rem;
+}
+.intro-right p:first-child { font-size:1.4rem; font-style:italic; }
+.intro-right strong { color: var(--verde2); }
+
+/* ════════════════════════════════════
+   DESTINOS — EDITORIAL GRID
+════════════════════════════════════ */
+.destinos-section {
+  background: var(--crema); padding:7rem 0;
+}
+.destinos-header { padding:0 5rem 4rem; }
+.destinos-mega {
+  display:grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-rows: 480px 340px;
+  gap:3px;
+}
+.dm { position:relative; overflow:hidden; cursor:pointer; }
+.dm-1 { grid-row: 1 / 3; }
+.dm-2 { grid-row: 1; }
+.dm-3 { grid-row: 1; }
+.dm-4 { grid-row: 2; }
+.dm-5 { grid-row: 2; }
+
+/* Gradient backgrounds */
+.bg-roma       { background: linear-gradient(160deg,#180800,#4a1c00,#8b3a0e,#c4722a); }
+.bg-venecia    { background: linear-gradient(160deg,#080f1a,#0d2035,#16416b,#1e6b9e); }
+.bg-florencia  { background: linear-gradient(160deg,#180e00,#4a3200,#8b6020,#c4a040); }
+.bg-amalfi     { background: linear-gradient(160deg,#00180a,#004520,#0a8a45,#15c470); }
+.bg-sicilia    { background: linear-gradient(160deg,#1a0700,#5a1a00,#a03a00,#d46020); }
+.bg-cinque     { background: linear-gradient(160deg,#001840,#003080,#0050c0,#2080e0); }
+.bg-toscana    { background: linear-gradient(160deg,#100900,#3a2500,#7a5010,#b88030); }
+.bg-puglia     { background: linear-gradient(160deg,#001515,#003535,#007070,#00a5a5); }
+.bg-lago       { background: linear-gradient(160deg,#040810,#081830,#104878,#1878c0); }
+.bg-napoles    { background: linear-gradient(160deg,#150005,#3a0010,#800020,#c03040); }
+
+.dm-overlay {
+  position:absolute; inset:0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+  transition: opacity .5s;
+}
+.dm:hover .dm-overlay { opacity:0.7; }
+
+.dm-decor {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-55%);
+  font-size:clamp(4rem, 7vw, 9rem); opacity:0.18;
+  transition: opacity .4s, transform .4s;
+  pointer-events:none; user-select:none;
+}
+.dm:hover .dm-decor { opacity:0.32; transform:translate(-50%,-55%) scale(1.08); }
+
+.dm-info {
+  position:absolute; bottom:0; left:0; right:0;
+  padding:2.2rem 2rem;
+  color:#fff;
+}
+.dm-tag {
+  font-family:'DM Sans', sans-serif; font-size:0.58rem;
+  letter-spacing:0.25em; text-transform:uppercase;
+  background: var(--rojo); color:#fff;
+  padding:0.2rem 0.7rem; display:inline-block; margin-bottom:0.7rem;
+}
+.dm-novedad {
+  background: var(--oro) !important; color: var(--carbon) !important;
+}
+.dm-name {
+  font-family:'Abril Fatface', serif;
+  font-size:clamp(1.6rem, 3.5vw, 2.8rem); line-height:0.95;
+  margin-bottom:0.4rem;
+}
+.dm-desc {
+  font-size:0.9rem; opacity:0.75; font-style:italic;
+  max-width:360px; line-height:1.5;
+}
+.dm-arrow {
+  position:absolute; right:1.5rem; bottom:1.5rem;
+  width:38px; height:38px; border-radius:50%;
+  border:1px solid rgba(255,255,255,0.3);
+  background: transparent;
+  cursor: pointer;
+  display:flex; align-items:center; justify-content:center;
+  color:rgba(255,255,255,0.5); font-size:1rem;
+  transition: background .3s, color .3s, border-color .3s;
+  z-index: 5;
+}
+.dm:hover .dm-arrow { background: var(--rojo); border-color:var(--rojo); color:#fff; }
+
+/* Expand: more destinos below */
+.destinos-extra {
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:3px; margin-top:3px;
+}
+.de-card { height:260px; }
+
+/* ════════════════════════════════════
+   SEGRETI — HIDDEN GEMS
+════════════════════════════════════ */
+.segreti {
+  background: var(--carbon2); color:#fff;
+  position:relative; overflow:hidden;
+}
+.segreti::before {
+  content:'SEGRETI';
+  position:absolute; right:-3rem; top:50%; transform:translateY(-50%);
+  font-family:'Abril Fatface', serif; font-size:18vw;
+  color:rgba(255,255,255,0.025); line-height:1; pointer-events:none;
+}
+.segreti-grid {
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5px;
+  margin-top:4rem;
+  border:1.5px solid rgba(201,151,43,0.2);
+}
+.segreto {
+  padding:2.5rem 2rem;
+  border-right:1.5px solid rgba(201,151,43,0.12);
+  border-bottom:1.5px solid rgba(201,151,43,0.12);
+  position:relative; overflow:hidden;
+  transition: background .35s;
+}
+.segreto:hover { background:rgba(201,151,43,0.05); }
+.segreto:nth-child(3n) { border-right:none; }
+.segreto-num {
+  font-family:'Abril Fatface', serif; font-size:4.5rem;
+  color:rgba(240,196,90,0.12); line-height:1; margin-bottom:0.8rem;
+}
+.segreto-icon { font-size:2rem; margin-bottom:0.8rem; }
+.segreto h3 {
+  font-family:'Abril Fatface', serif; font-size:1.4rem;
+  color: var(--oro2); margin-bottom:0.7rem;
+}
+.segreto p { font-size:1rem; line-height:1.75; color:rgba(255,255,255,0.65); }
+.segreto-badge {
+  display:inline-block; margin-top:1rem;
+  padding:0.25rem 0.8rem;
+  border:1px solid rgba(201,151,43,0.3);
+  font-family:'DM Sans', sans-serif; font-size:0.6rem;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color: var(--oro);
+}
+
+/* ════════════════════════════════════
+   NOVEDADES 2025
+════════════════════════════════════ */
+.novedades {
+  background: #3d1a00; color:#fff; padding:7rem 5rem;
+  position:relative; overflow:hidden;
+  background: linear-gradient(135deg, #2a1200 0%, #3d1a00 40%, #4a2008 70%, #3a1500 100%);
+}
+.novedades::before {
+  content:'2025';
+  position:absolute; right:-2rem; top:50%; transform:translateY(-50%);
+  font-family:'Abril Fatface', serif; font-size:22vw;
+  color:rgba(255,255,255,0.04); line-height:1; pointer-events:none;
+}
+.nov-grid {
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:2rem; margin-top:4rem;
+}
+.nov-card {
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(201,151,43,0.2);
+  padding:2.2rem 2rem;
+  transition: background .3s, transform .3s, border-color .3s;
+  position:relative;
+}
+.nov-card:hover { background:rgba(201,151,43,0.08); transform:translateY(-4px); border-color:rgba(201,151,43,0.5); }
+.nov-icon { font-size:2.5rem; margin-bottom:1rem; }
+.nov-card h3 {
+  font-family:'Abril Fatface', serif; font-size:1.4rem;
+  margin-bottom:0.6rem; color: var(--oro2);
+}
+.nov-card p { font-size:0.95rem; line-height:1.75; opacity:0.75; }
+.nov-flag {
+  position:absolute; top:1.2rem; right:1.2rem;
+  font-family:'DM Sans', sans-serif; font-size:0.58rem;
+  font-weight:500; letter-spacing:0.2em; text-transform:uppercase;
+  background:var(--oro); color:#1a0a00; padding:0.2rem 0.6rem;
+}
+
+/* ════════════════════════════════════
+   ATRACCIONES — MAGAZINE STYLE
+════════════════════════════════════ */
+.atracciones { background:#fff; }
+.atracciones-list {
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:2px; margin-top:4rem;
+}
+.at-card {
+  position:relative; overflow:hidden;
+  padding:2.5rem 2rem;
+  background: var(--crema);
+  border-bottom:4px solid transparent;
+  transition: border-color .3s, background .3s, transform .4s;
+}
+.at-card:hover { border-color:var(--rojo); background: var(--crema2); transform:translateY(-4px); }
+.at-num {
+  font-family:'Abril Fatface', serif; font-size:5rem;
+  color:rgba(0,0,0,0.05); line-height:1; position:absolute; top:0.5rem; right:1rem;
+}
+.at-icon { font-size:2.8rem; margin-bottom:1.2rem; }
+.at-card h3 {
+  font-family:'Abril Fatface', serif; font-size:1.35rem;
+  color: var(--verde); margin-bottom:0.6rem; line-height:1.1;
+}
+.at-card p { font-size:1rem; line-height:1.75; color:var(--gris); }
+.at-meta {
+  display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.3rem;
+  font-family:'DM Sans', sans-serif; font-size:0.62rem;
+  letter-spacing:0.12em; text-transform:uppercase; color:#999;
+}
+.at-consiglio {
+  margin-top:1rem; padding:0.6rem 0.9rem;
+  background:rgba(14,51,32,0.06); border-left:3px solid var(--verde2);
+  font-size:0.88rem; font-style:italic; color: var(--verde2); line-height:1.5;
+}
+
+/* ════════════════════════════════════
+   GASTRONOMIA — DARK FEAST
+════════════════════════════════════ */
+.gastronomia {
+  background: var(--carbon); color:#fff;
+  position:relative; overflow:hidden;
+}
+.gastro-intro {
+  display:grid; grid-template-columns:1fr 1.4fr; gap:5rem; margin-bottom:5rem;
+  align-items:center;
+}
+.gastro-intro-text h2 { color:#fff; }
+.gastro-intro-text p {
+  font-size:1.15rem; line-height:1.85; color:rgba(255,255,255,0.6); margin-top:1.5rem;
+}
+.gastro-mega {
+  font-family:'Abril Fatface', serif;
+  font-size: clamp(4rem, 9vw, 8rem); color: var(--oro2);
+  line-height:0.85; opacity:0.9;
+}
+.gastro-mega span { display:block; font-size:0.38em; font-family:'EB Garamond', serif; font-style:italic; font-weight:400; color:rgba(255,255,255,0.3); letter-spacing:0.08em; }
+.gastro-grid {
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:1.5px;
+}
+.g-item {
+  padding:2.2rem 1.8rem;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.05);
+  text-align:center;
+  transition: background .3s, border-color .3s;
+}
+.g-item:hover { background:rgba(201,151,43,0.08); border-color:rgba(201,151,43,0.25); }
+.g-emoji { font-size:3rem; margin-bottom:1rem; }
+.g-item h4 {
+  font-family:'Abril Fatface', serif; font-size:1.1rem;
+  color: var(--oro2); margin-bottom:0.5rem;
+}
+.g-item p { font-size:0.88rem; line-height:1.6; color:rgba(255,255,255,0.55); }
+.g-region {
+  display:inline-block; margin-top:0.8rem;
+  font-family:'DM Sans', sans-serif; font-size:0.58rem;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color: rgba(240,196,90,0.6);
+}
+
+/* ════════════════════════════════════
+   RISTORANTI
+════════════════════════════════════ */
+.ristoranti { background: var(--crema2); }
+.rist-grid {
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:2rem; margin-top:4rem;
+}
+.r-card {
+  background: var(--blanco);
+  border-top:4px solid var(--oro);
+  padding:2.2rem;
+  transition:transform .3s, box-shadow .3s;
+}
+.r-card:hover { transform:translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.1); }
+.r-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.5rem; }
+.r-name {
+  font-family:'Abril Fatface', serif; font-size:1.25rem; color:var(--carbon); line-height:1.1;
+}
+.r-stars { color: var(--oro); font-size:0.75rem; letter-spacing:0.1em; }
+.r-loc {
+  font-family:'DM Sans', sans-serif; font-size:0.62rem;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--rojo); margin-bottom:1rem;
+}
+.r-desc { font-size:0.98rem; line-height:1.75; color:#555; }
+.r-tags { display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:1.2rem; }
+.r-tag {
+  border:1px solid rgba(0,0,0,0.12); padding:0.25rem 0.7rem;
+  font-family:'DM Sans', sans-serif; font-size:0.58rem;
+  letter-spacing:0.12em; text-transform:uppercase; color:#888;
+}
+.r-price {
+  font-family:'DM Sans', sans-serif; font-size:0.78rem;
+  color:var(--verde2); margin-top:0.8rem; font-weight:500;
+}
+.r-italiano {
+  margin-top:1rem; padding:0.7rem 1rem;
+  background:rgba(14,51,32,0.05); border-left:3px solid var(--verde2);
+  font-size:0.88rem; font-style:italic; color:var(--verde2);
+}
+
+/* ════════════════════════════════════
+   ITINERARIOS
+════════════════════════════════════ */
+.itinerarios { background: var(--verde); color:#fff; }
+.it-grid {
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:2px; margin-top:4rem;
+}
+.it-card {
+  background:rgba(255,255,255,0.06);
+  padding:2.5rem 2rem;
+  border-top:3px solid rgba(201,151,43,0.4);
+  transition:background .3s;
+}
+.it-card:hover { background:rgba(255,255,255,0.1); }
+.it-dias {
+  font-family:'Abril Fatface', serif; font-size:3.5rem;
+  color:var(--oro2); line-height:1; margin-bottom:0.3rem;
+}
+.it-label {
+  font-family:'DM Sans', sans-serif; font-size:0.6rem;
+  letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.4);
+  margin-bottom:1.2rem;
+}
+.it-card h3 {
+  font-family:'Abril Fatface', serif; font-size:1.4rem; margin-bottom:0.8rem;
+}
+.it-stops { list-style:none; }
+.it-stops li {
+  padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.08);
+  font-size:0.95rem; color:rgba(255,255,255,0.7);
+  display:flex; align-items:center; gap:0.6rem;
+}
+.it-stops li::before { content:'→'; color:var(--oro); font-size:0.85rem; }
+
+/* ════════════════════════════════════
+   CONSEJOS — LUXE CARDS
+════════════════════════════════════ */
+.consejos { background: var(--crema); }
+.conj-grid {
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:2rem; margin-top:4rem;
+}
+.conj-card {
+  padding:2.5rem 2rem;
+  background:var(--blanco);
+  border:1.5px solid rgba(201,151,43,0.15);
+  position:relative; transition:border-color .3s, box-shadow .3s;
+}
+.conj-card:hover {
+  border-color:var(--oro);
+  box-shadow: 0 16px 40px rgba(201,151,43,0.1);
+}
+.conj-num {
+  font-family:'Abril Fatface', serif; font-size:5rem;
+  color:rgba(201,151,43,0.1); line-height:1; position:absolute; top:1rem; right:1.5rem;
+}
+.conj-icon { font-size:2rem; margin-bottom:1rem; }
+.conj-card h4 {
+  font-family:'Abril Fatface', serif; font-size:1.2rem;
+  color:var(--carbon); margin-bottom:0.6rem;
+}
+.conj-card p { font-size:1rem; line-height:1.75; color:var(--gris); }
+
+/* ════════════════════════════════════
+   INFO PRATICA
+════════════════════════════════════ */
+.info-pratica {
+  background: var(--azul); color:#fff;
+  display:grid; grid-template-columns:1fr 1fr; gap:0; padding:0;
+}
+.ip-left {
+  padding:6rem 5rem;
+  border-right:1px solid rgba(255,255,255,0.08);
+}
+.ip-right {
+  padding:6rem 5rem;
+  background: rgba(0,0,0,0.15);
+}
+.ip-title {
+  font-family:'Abril Fatface', serif; font-size:2.8rem;
+  margin-bottom:0.5rem; color:#fff;
+}
+.ip-sub { color:rgba(255,255,255,0.5); font-style:italic; font-size:1.1rem; margin-bottom:3rem; }
+.ip-badges {
+  display:grid; grid-template-columns:1fr 1fr; gap:1rem;
+}
+.ip-badge {
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  padding:1.2rem 1.4rem;
+}
+.ip-badge strong {
+  display:block; font-family:'DM Sans', sans-serif;
+  font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--oro2); margin-bottom:0.4rem;
+}
+.ip-badge span { font-size:1.05rem; }
+.ip-mappa svg { width:100%; max-width:320px; }
+
+/* Italy SVG Map */
+.italy-svg path, .italy-svg ellipse {
+  transition: fill .3s;
+}
+
+/* ════════════════════════════════════
+   FOOTER
+════════════════════════════════════ */
+footer {
+  background: var(--carbon);
+  padding:5rem 5rem 3rem;
+}
+.footer-top {
+  display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:4rem; margin-bottom:4rem;
+}
+.footer-brand .logo {
+  font-family:'Abril Fatface', serif; font-size:2.2rem;
+  color: var(--oro2); margin-bottom:1rem;
+}
+.footer-brand p {
+  font-size:0.95rem; line-height:1.8; color:rgba(255,255,255,0.4);
+}
+.footer-col h5 {
+  font-family:'DM Sans', sans-serif; font-size:0.65rem;
+  font-weight:500; letter-spacing:0.25em; text-transform:uppercase;
+  color:var(--oro); margin-bottom:1.2rem;
+}
+.footer-col ul { list-style:none; }
+.footer-col ul li { margin-bottom:0.6rem; }
+.footer-col ul li a {
+  text-decoration:none; color:rgba(255,255,255,0.4);
+  font-size:0.95rem; transition:color .25s;
+}
+.footer-col ul li a:hover { color:#fff; }
+.footer-bottom {
+  border-top:1px solid rgba(255,255,255,0.07);
+  padding-top:2rem; display:flex; justify-content:space-between; align-items:center;
+}
+.footer-flag { display:flex; height:3px; width:80px; }
+.footer-flag span { flex:1; }
+.footer-flag .fg { background:var(--verde2); }
+.footer-flag .fw { background:#fff; }
+.footer-flag .fr { background:var(--rojo); }
+.footer-copy {
+  font-family:'DM Sans', sans-serif; font-size:0.7rem;
+  color:rgba(255,255,255,0.2); letter-spacing:0.1em;
+}
+
+/* ════════════════════════════════════
+   DESTINOS — REAL IMAGE BACKGROUNDS
+════════════════════════════════════ */
+.bg-roma       { background: url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1200&q=80') center/cover no-repeat; }
+.bg-venecia    { background: url('https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?w=1200&q=80') center/cover no-repeat; }
+.bg-florencia  { background: url('https://images.unsplash.com/photo-1543429257-3eb0b9f5f0c6?w=1200&q=80') center/cover no-repeat; }
+.bg-amalfi     { background: url('https://images.unsplash.com/photo-1533105079780-92b9be482077?w=1200&q=80') center/cover no-repeat; }
+.bg-sicilia    { background: url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1200&q=80') center/cover no-repeat; }
+.bg-cinque     { background: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1200&q=80') center/cover no-repeat; }
+.bg-toscana    { background: url('https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=900&q=80') center/cover no-repeat; }
+.bg-puglia     { background: url('https://images.unsplash.com/photo-1583422409516-2895a77efded?w=900&q=80') center/cover no-repeat; }
+.bg-lago       { background: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=900&q=80') center/cover no-repeat; }
+.bg-napoles    { background: url('https://images.unsplash.com/photo-1555093191-a3a5c8c5e8d2?w=900&q=80') center/cover no-repeat; }
+
+/* ════════════════════════════════════
+   SCROLL FLAG ANIMATIONS
+════════════════════════════════════ */
+/* Floating flag that appears on scroll */
+.scroll-flag-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9980;
+  display: flex;
+  gap: 0;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(20px) rotate(var(--rot, 0deg));
+  animation: flagFloat var(--dur, 2.5s) ease-out forwards;
+}
+.scroll-flag-particle span { display: block; }
+@keyframes flagFloat {
+  0%   { opacity: 0; transform: translateY(20px) rotate(var(--rot,0deg)) scale(0.5); }
+  15%  { opacity: 1; transform: translateY(0) rotate(var(--rot,0deg)) scale(1); }
+  75%  { opacity: 0.9; }
+  100% { opacity: 0; transform: translateY(-60px) rotate(calc(var(--rot,0deg) + 8deg)) scale(0.8); }
+}
+
+/* Side flag strips that slide in on section enter */
+.section-flag-reveal {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 5px;
+  display: flex; flex-direction: column;
+  z-index: 5;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1s cubic-bezier(.22,1,.36,1) .2s;
+}
+.section-flag-reveal.active { transform: scaleY(1); }
+.section-flag-reveal span { flex:1; }
+
+/* Flag waving ribbon that slides across sections */
+@keyframes ribbonSlide {
+  from { transform: translateX(-100%) scaleY(1); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  to   { transform: translateX(100vw) scaleY(1); opacity: 0; }
+}
+.flag-ribbon {
+  position: absolute;
+  top: 0; left: 0;
+  height: 4px; width: 100%;
+  display: flex;
+  z-index: 10;
+  animation: ribbonSlide 1.2s cubic-bezier(.4,0,.2,1) both;
+  pointer-events: none;
+}
+.flag-ribbon span { flex: 1; }
+
+/* Decorative corner flag (fixed, subtle) */
+#corner-flag {
+  position: fixed;
+  right: 2.5rem; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column;
+  width: 5px; height: 80px;
+  border-radius: 3px; overflow: hidden;
+  z-index: 90; opacity: 0;
+  transition: opacity .5s;
+  pointer-events: none;
+}
+#corner-flag.visible { opacity: 0.6; }
+#corner-flag span { flex: 1; }
+
+/* Section transition flag bar */
+.section-flag-bar {
+  height: 3px;
+  display: flex;
+  width: 100%;
+}
+.section-flag-bar span { flex: 1; }
+
+/* ════════════════════════════════════
+   MODAL SYSTEM
+════════════════════════════════════ */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 9000;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s;
+  padding: 2rem;
+}
+.modal-overlay.open { opacity: 1; pointer-events: auto; }
+.modal-box {
+  background: var(--crema);
+  max-width: 900px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  position: relative;
+  transform: translateY(30px) scale(0.97);
+  transition: transform .35s cubic-bezier(.22,1,.36,1);
+}
+.modal-overlay.open .modal-box { transform: none; }
+.modal-img {
+  width: 100%; height: 320px; object-fit: cover;
+  display: block;
+}
+.modal-img-placeholder {
+  width: 100%; height: 320px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 6rem;
+}
+.modal-body { padding: 2.5rem 3rem 3rem; }
+.modal-tag {
+  font-family:'DM Sans', sans-serif; font-size:0.6rem;
+  letter-spacing:.25em; text-transform:uppercase;
+  background: var(--rojo); color:#fff;
+  padding:.2rem .8rem; display:inline-block; margin-bottom:.8rem;
+}
+.modal-title {
+  font-family:'Abril Fatface', serif; font-size:2.8rem;
+  color:var(--carbon); line-height:1; margin-bottom:.5rem;
+}
+.modal-sub {
+  font-size:1.1rem; font-style:italic; color:var(--gris); margin-bottom:1.5rem;
+}
+.modal-text { font-size:1.05rem; line-height:1.85; color:#333; margin-bottom:1.5rem; }
+.modal-highlights {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:2rem;
+}
+.modal-hl {
+  background:var(--crema2); padding:1rem;
+  border-left:3px solid var(--oro);
+}
+.modal-hl strong {
+  display:block; font-family:'DM Sans',sans-serif;
+  font-size:.6rem; letter-spacing:.15em; text-transform:uppercase;
+  color:var(--oro); margin-bottom:.3rem;
+}
+.modal-hl span { font-size:.95rem; color:var(--carbon); }
+.modal-btns { display:flex; gap:1rem; }
+.modal-close {
+  position:absolute; top:1.2rem; right:1.2rem;
+  width:42px; height:42px; background:rgba(0,0,0,0.5);
+  border:none; cursor:pointer; color:#fff; font-size:1.3rem;
+  display:flex; align-items:center; justify-content:center;
+  transition: background .2s;
+  z-index: 10;
+}
+.modal-close:hover { background:var(--rojo); }
+
+/* Flag bar before each major section */
+.sfb { height:3px; display:flex; }
+.sfb span { flex:1; }
+
+/* ════════════════════════════════════
+   ANIMATIONS & REVEAL
+════════════════════════════════════ */
+@keyframes revealUp {
+  from { opacity:0; transform:translateY(28px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.reveal {
+  opacity:0; transform:translateY(32px);
+  transition: opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1);
+}
+.reveal.visible { opacity:1; transform:none; }
+
+/* ════════════════════════════════════
+   PROGRESS BAR
+════════════════════════════════════ */
+#progress-bar {
+  position:fixed; top:0; left:0; height:3px; z-index:9999;
+  background: linear-gradient(to right, var(--verde2), var(--oro), var(--rojo));
+  width:0; transition:width .1s linear;
+}
+
+/* ════════════════════════════════════
+   BACK TO TOP
+════════════════════════════════════ */
+#back-top {
+  position:fixed; bottom:2.5rem; right:2.5rem; z-index:99;
+  width:48px; height:48px; background:var(--rojo);
+  border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-size:1.2rem;
+  opacity:0; pointer-events:none; transition:opacity .3s, transform .3s;
+}
+#back-top.visible { opacity:1; pointer-events:auto; }
+#back-top:hover { transform:translateY(-3px); background:#8b0016; }
+
+/* ════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════ */
+@media (max-width:900px) {
+  nav { padding:1rem 1.5rem; }
+  nav.scrolled { padding:0.8rem 1.5rem; }
+  .nav-links { display:none; }
+  section { padding:5rem 1.5rem; }
+  .destinos-mega { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
+  .dm-1 { grid-row:auto; grid-column:1/-1; height:380px; }
+  .destinos-extra { grid-template-columns:1fr 1fr; }
+  .stats-bar { grid-template-columns:1fr 1fr; }
+  .intro-section { grid-template-columns:1fr; }
+  .intro-left { padding:4rem 2rem; }
+  .intro-right { padding:4rem 2rem; }
+  .segreti-grid { grid-template-columns:1fr 1fr; }
+  .nov-grid { grid-template-columns:1fr; }
+  .atracciones-list { grid-template-columns:1fr 1fr; }
+  .gastro-intro { grid-template-columns:1fr; gap:2rem; }
+  .gastro-grid { grid-template-columns:repeat(2, 1fr); }
+  .rist-grid { grid-template-columns:1fr; }
+  .it-grid { grid-template-columns:1fr; }
+  .conj-grid { grid-template-columns:1fr 1fr; }
+  .info-pratica { grid-template-columns:1fr; }
+  .footer-top { grid-template-columns:1fr 1fr; gap:2rem; }
+  .destinos-header { padding:0 1.5rem 3rem; }
+}
+@media (max-width:550px) {
+  .hero-title { font-size:4.5rem; }
+  .atracciones-list { grid-template-columns:1fr; }
+  .segreti-grid { grid-template-columns:1fr; }
+  .conj-grid { grid-template-columns:1fr; }
+  .footer-top { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Progress bar -->
+<div id="progress-bar"></div>
+
+<!-- Cursor -->
+<div class="cursor-dot" id="dot"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<!-- Back to top -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav id="navbar">
+  <div class="nav-logo">Italia Eterna</div>
+  <ul class="nav-links">
+    <li><a href="#destinos">Destinos</a></li>
+    <li><a href="#segreti">Secretos</a></li>
+    <li><a href="#novedades">Novedades</a></li>
+    <li><a href="#gastronomia">Gastronomía</a></li>
+    <li><a href="#ristoranti">Restaurantes</a></li>
+    <li><a href="#consejos">Consejos</a></li>
+    <li><a href="#info" class="nav-cta">Info Práctica</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="top">
+  <div class="hero-video-bg"></div>
+  <div class="hero-shape hs1"></div>
+  <div class="hero-shape hs2"></div>
+  <div class="hero-shape hs3"></div>
+  <div class="hero-flag">
+    <span class="hf-g"></span>
+    <span class="hf-w"></span>
+    <span class="hf-r"></span>
+  </div>
+  <div class="hero-watermark">ITALIA</div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">La guía que un italiano te daría</p>
+    <h1 class="hero-title">
+      <span class="accent">Benvenuti in</span>
+      Italia
+    </h1>
+    <p class="hero-sub">Arte, sabor, historia y quella cosa chiamata dolce vita</p>
+    <div class="hero-btns">
+      <a href="#destinos" class="btn-primary">Descubrir Italia</a>
+      <a href="#segreti" class="btn-outline">Lugares Secretos</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scorri</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════ STATS ═══════════ -->
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <span class="stat-num">58</span>
+    <div class="stat-label">Patrimoni UNESCO</div>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num">20</span>
+    <div class="stat-label">Regioni Uniche</div>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num">850+</span>
+    <div class="stat-label">Stelle Michelin</div>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num">3000</span>
+    <div class="stat-label">Anni di Storia</div>
+  </div>
+</div>
+
+<!-- ═══════════ INTRO — VOZ ITALIANA ═══════════ -->
+<div class="intro-section">
+  <div class="intro-left">
+    <blockquote class="intro-quote">
+      "Italia no se visita. Italia se <em>vive</em>, se siente en el estómago, en los ojos, en el alma."
+    </blockquote>
+    <div class="intro-autor">
+      <div class="intro-flag-mini">
+        <span style="background:#009246"></span>
+        <span style="background:#fff"></span>
+        <span style="background:#ce2b37"></span>
+      </div>
+      <div>
+        <strong style="color:#fff; font-family:'DM Sans',sans-serif; font-size:0.8rem;">Marco Gentile</strong>
+        <div style="color:rgba(255,255,255,0.4); font-size:0.75rem; font-family:'DM Sans',sans-serif;">Romano, guía local</div>
+      </div>
+    </div>
+  </div>
+  <div class="intro-right">
+    <p>Soy italiano. Nací en Roma, estudié en Bolonia, veraneé toda mi vida en Sicilia. Cuando alguien me pregunta qué ver en Italia… suspiro.</p>
+    <p>No porque no sepa qué decir, sino porque <strong>no sé por dónde empezar</strong>. Cada pueblo tiene un fresco del 1400 que no está en ninguna guía. Cada nonna cocina una receta que no encontrarás en ningún restaurante.</p>
+    <p>Esta guía es lo que le diría a un amigo. <strong>No los tours de 2 horas. No los restaurantes de la Plaza Mayor.</strong> La Italia que los italianos amamos de verdad.</p>
+  </div>
+</div>
+
+<!-- FLAG BAR -->
+<div class="sfb"><span style="background:#009246"></span><span style="background:#fff"></span><span style="background:#ce2b37"></span></div>
+
+<!-- ═══════════ DESTINOS ═══════════ -->
+<section class="destinos-section" id="destinos" style="position:relative;">
+  <div class="destinos-header">
+    <span class="section-label">Dove andare</span>
+    <h2 class="section-title">Los Destinos <br>Que Debes Ver</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="destinos-mega">
+
+    <div class="dm dm-1 bg-roma reveal" data-dest="roma">
+      <div class="dm-overlay"></div>
+      <div class="dm-decor">🏛️</div>
+      <div class="dm-info">
+        <span class="dm-tag">La Città Eterna</span>
+        <div class="dm-name">Roma</div>
+        <p class="dm-desc">No es solo una ciudad. Es la acumulación de 3000 años de humanidad en cada calle, cada piedra, cada piazza. El Coliseo, el Vaticano, el Trastevere de noche — pero también los barrios de Pigneto y Prati, donde vivimos los romanos de verdad.</p>
+      </div>
+      <button class="dm-arrow" onclick="openModal('roma')">→</button>
+    </div>
+
+    <div class="dm dm-2 bg-venecia reveal" data-dest="venecia">
+      <div class="dm-overlay"></div>
+      <div class="dm-decor">🛶</div>
+      <div class="dm-info">
+        <span class="dm-tag">La Serenissima</span>
+        <div class="dm-name">Venezia</div>
+        <p class="dm-desc">Ve en noviembre o febrero — sin multitudes, con la niebla sobre el Gran Canal.</p>
+      </div>
+      <button class="dm-arrow" onclick="openModal('venecia')">→</button>
+    </div>
+
+    <div class="dm dm-3 bg-florencia reveal" data-dest="florencia">
+      <div class="dm-overlay"></div>
+      <div class="dm-decor">🖼️</div>
+      <div class="dm-info">
+        <span class="dm-tag">Culla del Rinascimento</span>
+        <div class="dm-name">Firenze</div>
+        <p class="dm-desc">El museo más grande del mundo, pero también la ciudad más vivida de la Toscana.</p>
+      </div>
+      <button class="dm-arrow" onclick="openModal('florencia')">→</button>
+    </div>
+
+    <div class="dm dm-4 bg-napoles reveal" data-dest="napoles">
+      <div class="dm-overlay"></div>
+      <div class="dm-decor">🍕</div>
+      <div class="dm-info">
+        <span class="dm-tag">Caos Hermoso</span>
+        <div class="dm-name">Napoli</div>
+        <p class="dm-desc">La ciudad más italiana de Italia. Ruidosa, apasionada, incomparable.</p>
+      </div>
+      <button class="dm-arrow" onclick="openModal('napoles')">→</button>
+    </div>
+
+    <div class="dm dm-5 bg-amalfi reveal" data-dest="amalfi">
+      <div class="dm-overlay"></div>
+      <div class="dm-decor">🌊</div>
+      <div class="dm-info">
+        <span class="dm-tag">Paradiso sul Mare</span>
+        <div class="dm-name">Costa Amalfitana</div>
+        <p class="dm-desc">Positano, Ravello, Praiano — carreteras de vértigo y limoneros sobre el azul.</p>
+      </div>
+      <button class="dm-arrow" onclick="openModal('amalfi')">→</button>
+    </div>
+
+  </div>
+
+  <!-- Más destinos -->
+  <div class="destinos-extra">
+    <div class="dm de-card bg-toscana reveal" data-dest="toscana">
+      <div class="dm-overlay"></div>
+      <div class="dm-decor" style="font-size:3rem">🌿</div>
+      <div class="dm-info">
+        <span class="dm-tag dm-novedad">Imperdibile</span>
+        <div class="dm-name" style="font-size:1.6rem">Toscana Rural</div>
+      </div>
+      <button class="dm-arrow" onclick="openModal('toscana')">→</button>
+    </div>
+    <div class="dm de-card bg-sicilia reveal" data-dest="sicilia">
+      <div class="dm-overlay"></div>
+      <div class="dm-decor" style="font-size:3rem">🌋</div>
+      <div class="dm-info">
+        <span class="dm-tag">Il Sud</span>
+        <div class="dm-name" style="font-size:1.6rem">Sicilia</div>
+      </div>
+      <button class="dm-arrow" onclick="openModal('sicilia')">→</button>
+    </div>
+    <div class="dm de-card bg-puglia reveal" data-dest="puglia">
+      <div class="dm-overlay"></div>
+      <div class="dm-decor" style="font-size:3rem">🏡</div>
+      <div class="dm-info">
+        <span class="dm-tag dm-novedad">Trending</span>
+        <div class="dm-name" style="font-size:1.6rem">Puglia</div>
+      </div>
+      <button class="dm-arrow" onclick="openModal('puglia')">→</button>
+    </div>
+    <div class="dm de-card bg-lago reveal" data-dest="lago">
+      <div class="dm-overlay"></div>
+      <div class="dm-decor" style="font-size:3rem">⛵</div>
+      <div class="dm-info">
+        <span class="dm-tag">Eleganza</span>
+        <div class="dm-name" style="font-size:1.6rem">Lago di Como</div>
+      </div>
+      <button class="dm-arrow" onclick="openModal('lago')">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- FLAG BAR -->
+<div class="sfb"><span style="background:#009246"></span><span style="background:#fff"></span><span style="background:#ce2b37"></span></div>
+
+<!-- ═══════════ SEGRETI — HIDDEN GEMS ═══════════ -->
+<section class="segreti" id="segreti">
+  <span class="section-label">I veri tesori</span>
+  <h2 class="section-title light">Los Secretos que<br>Ninguna Guía Cuenta</h2>
+  <div class="section-divider"></div>
+
+  <div class="segreti-grid">
+
+    <div class="segreto reveal">
+      <div class="segreto-num">01</div>
+      <div class="segreto-icon">🏘️</div>
+      <h3>Matera</h3>
+      <p>Una ciudad excavada en roca viva, habitada desde la prehistoria. Hoy es uno de los destinos más sorprendentes de Europa. Los <em>Sassi</em> —barrios de cuevas— son ahora hoteles de lujo. Capital Europea de la Cultura 2019 y aún relativamente tranquila.</p>
+      <span class="segreto-badge">Basilicata · 2h desde Nápoles</span>
+    </div>
+
+    <div class="segreto reveal">
+      <div class="segreto-num">02</div>
+      <div class="segreto-icon">🏰</div>
+      <h3>Civita di Bagnoregio</h3>
+      <p>La "ciudad que muere" — un pueblo medieval en lo alto de una roca de tufa, conectado al mundo por un solo puente. Solo quedan 12 residentes permanentes. Ver el atardecer desde aquí es como estar en el fin del mundo.</p>
+      <span class="segreto-badge">Lazio · 1.5h desde Roma</span>
+    </div>
+
+    <div class="segreto reveal">
+      <div class="segreto-num">03</div>
+      <div class="segreto-icon">🌊</div>
+      <h3>Tropea</h3>
+      <p>La Calabria tiene el agua más cristalina de Italia. Tropea, con su casco viejo sobre el acantilado y las playas de arena blanca, es un secreto que queremos guardar para nosotros mismos. Y la cipolla rossa de Tropea — la cebolla más dulce del mundo.</p>
+      <span class="segreto-badge">Calabria · Costa Tirrenica</span>
+    </div>
+
+    <div class="segreto reveal">
+      <div class="segreto-num">04</div>
+      <div class="segreto-icon">🌸</div>
+      <h3>Alberobello</h3>
+      <p>Los <em>trulli</em> — construcciones de piedra cónica únicas en el mundo, declaradas Patrimonio UNESCO. Pero el verdadero secreto es el barrio de Rione Monti al anochecer, cuando los turistas se van y la luz dorada baña los tejados cónicos.</p>
+      <span class="segreto-badge">Puglia · Valle d'Itria</span>
+    </div>
+
+    <div class="segreto reveal">
+      <div class="segreto-num">05</div>
+      <div class="segreto-icon">🏔️</div>
+      <h3>Dolomiti</h3>
+      <p>Las montañas más dramáticas de Europa. En verano son paraíso de senderismo; en otoño, cuando los lärici se vuelven dorados, se convierten en algo de otro mundo. Cortina d'Ampezzo, Val Gardena, el Lago di Braies — fotos que parecen pintadas.</p>
+      <span class="segreto-badge">Trentino-Alto Adige</span>
+    </div>
+
+    <div class="segreto reveal">
+      <div class="segreto-num">06</div>
+      <div class="segreto-icon">🍷</div>
+      <h3>Piemonte Vinícola</h3>
+      <p>Las Langhe y el Monferrato — colinas de viñedos de Barolo y Barbaresco. Alba en octubre durante la feria del tartufo blanco. Bra, cuna de Slow Food. Esta es la Toscana que los italianos prefieren, sin los turistas de la Toscana.</p>
+      <span class="segreto-badge">Piemonte · Alba · Barolo</span>
+    </div>
+
+    <div class="segreto reveal">
+      <div class="segreto-num">07</div>
+      <div class="segreto-icon">🏛️</div>
+      <h3>Agrigento — Valle dei Templi</h3>
+      <p>Los templos griegos mejor conservados del mundo — y están en Sicilia, no en Grecia. Al amanecer, con la luz roja sobre el Templo della Concordia, sin nadie alrededor, entiendes por qué los griegos llamaban a esto <em>Akragas</em>, la ciudad más bella.</p>
+      <span class="segreto-badge">Sicilia · Costa Sul</span>
+    </div>
+
+    <div class="segreto reveal">
+      <div class="segreto-num">08</div>
+      <div class="segreto-icon">🎭</div>
+      <h3>Trieste</h3>
+      <p>La ciudad más misteriosa de Italia. Austrohúngara en el alma, italiana en el pasaporte. La ciudad de James Joyce, Italo Svevo y el mejor caffè del país. El Caffè San Marco, el Castello di Miramare al atardecer, el viento della Bora.</p>
+      <span class="segreto-badge">Friuli · Costa Adriática</span>
+    </div>
+
+    <div class="segreto reveal">
+      <div class="segreto-num">09</div>
+      <div class="segreto-icon">🌿</div>
+      <h3>Val d'Orcia</h3>
+      <p>Las colinas onduladas, los cipreses en fila, los campos de girasoles en julio. La Toscana de las postales, pero vivida desde dentro: Pienza, Bagno Vignoni, Montalcino. Alquila una casa rural una semana y no querrás volver.</p>
+      <span class="segreto-badge">Toscana · UNESCO</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- FLAG BAR -->
+<div class="sfb"><span style="background:#009246"></span><span style="background:#fff"></span><span style="background:#ce2b37"></span></div>
+
+<!-- ═══════════ NOVEDADES 2025 ═══════════ -->
+<section class="novedades" id="novedades">
+  <span class="section-label" style="color:rgba(255,255,255,0.7)">Novità 2025–2026</span>
+  <h2 class="section-title light">Lo Nuevo que No<br>Te Puedes Perder</h2>
+  <div class="section-divider" style="background:#fff; opacity:0.4;"></div>
+
+  <div class="nov-grid">
+
+    <div class="nov-card reveal">
+      <div class="nov-icon">🏛️</div>
+      <span class="nov-flag">NUEVO 2025</span>
+      <h3>Museo del Coliseo Renovado</h3>
+      <p>La planta baja del Coliseo abrió áreas arqueológicas completamente nuevas en 2024. Ahora puedes ver el hipogeo — los túneles subterráneos donde esperaban los gladiadores — con una experiencia inmersiva renovada en 2025.</p>
+    </div>
+
+    <div class="nov-card reveal">
+      <div class="nov-icon">🚆</div>
+      <span class="nov-flag">2025</span>
+      <h3>Alta Velocidad Palermo–Roma</h3>
+      <p>El nuevo túnel ferroviario bajo el Estrecho de Messina se debate activamente; mientras tanto, Trenitalia expandió las conexiones al sur. Sicilia es ahora más accesible que nunca desde el norte de Italia.</p>
+    </div>
+
+    <div class="nov-card reveal">
+      <div class="nov-icon">🎨</div>
+      <span class="nov-flag">TRENDING</span>
+      <h3>Puglia — El Nuevo Destino de Moda</h3>
+      <p>Lecce (el "Barrio de París del Sur"), Ostuni, Otranto y el Salento se han convertido en los destinos más buscados de Italia para 2025. Precios aún razonables, arquitectura barroca espectacular, mare cristallino.</p>
+    </div>
+
+    <div class="nov-card reveal">
+      <div class="nov-icon">🍽️</div>
+      <span class="nov-flag">ABIERTO</span>
+      <h3>Nueve Nuevas Estrellas Michelin</h3>
+      <p>Italia añadió nuevas estrellas en 2024-2025, con especial protagonismo del sur: Calabria y Sicilia por fin en el mapa gastronómico de alta gama. El chef Luigi Crea y su "cucina calabrese contemporánea" es la sensación del momento.</p>
+    </div>
+
+    <div class="nov-card reveal">
+      <div class="nov-icon">🏖️</div>
+      <span class="nov-flag">2025</span>
+      <h3>Lampedusa — Más que Noticias</h3>
+      <p>La isla más al sur de Europa, más cerca de África que de Roma, tiene las playas más vírgenes de Italia. La Spiaggia dei Conigli fue votada la más bella de Europa. Accesible en ferry desde Agrigento.</p>
+    </div>
+
+    <div class="nov-card reveal">
+      <div class="nov-icon">🎭</div>
+      <span class="nov-flag">2026</span>
+      <h3>Juegos Olímpicos de Invierno</h3>
+      <p>Milán-Cortina 2026. Los Alpes italianos serán escenario olímpico. Las infraestructuras mejoradas hacen del norte de Italia un destino de esquí de primer nivel. Valle d'Aosta, Livigno y Cortina d'Ampezzo son las sedes.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FLAG BAR -->
+<div class="sfb"><span style="background:#009246"></span><span style="background:#fff"></span><span style="background:#ce2b37"></span></div>
+
+<!-- ═══════════ ATRACCIONES ═══════════ -->
+<section class="atracciones" id="atracciones">
+  <span class="section-label">Da non perdere</span>
+  <h2 class="section-title">Atracciones que<br>Cambian la Vida</h2>
+  <div class="section-divider"></div>
+
+  <div class="atracciones-list">
+
+    <div class="at-card reveal">
+      <div class="at-num">01</div>
+      <div class="at-icon">🏟️</div>
+      <h3>Coliseo & Foro Romano</h3>
+      <p>El anfiteatro más grande del mundo, donde 50.000 romanos vieron gladiadores, bestias y espectáculos. El Foro adyacente era el centro político del Imperio. Visita al amanecer o una hora antes de cerrar para evitar las masas.</p>
+      <div class="at-meta"><span>📍 Roma</span><span>🎟️ €16–22</span><span>⏱ 3–4h</span></div>
+      <div class="at-consiglio">💡 Consejo italiano: reserva el tour del hipogeo para ver los túneles subterráneos. Eso es lo que los romanos no te cuentan.</div>
+    </div>
+
+    <div class="at-card reveal">
+      <div class="at-num">02</div>
+      <div class="at-icon">🖼️</div>
+      <h3>Gli Uffizi</h3>
+      <p>El museo renacentista más importante del mundo. La Primavera de Botticelli, el Nacimiento de Venus, el Annunciazione de Da Vinci. Hay más obras maestras por metro cuadrado que en cualquier otro lugar del planeta.</p>
+      <div class="at-meta"><span>📍 Firenze</span><span>🎟️ €20</span><span>⏱ 4–5h</span></div>
+      <div class="at-consiglio">💡 Reserva con 6 semanas de antelación. Sin reserva, espera 3 horas en cola. La sala 10–14 de Botticelli es la razón de venir.</div>
+    </div>
+
+    <div class="at-card reveal">
+      <div class="at-num">03</div>
+      <div class="at-icon">⛪</div>
+      <h3>Musei Vaticani + Cappella Sistina</h3>
+      <p>El techo de la Capilla Sixtina de Miguel Ángel es una de las cumbres absolutas del arte humano. Pero los museos vaticanos en general son laberínticos y fascinantes — 14 km de galerías, 70.000 obras.</p>
+      <div class="at-meta"><span>📍 Città del Vaticano</span><span>🎟️ €17</span><span>⏱ 3–5h</span></div>
+      <div class="at-consiglio">💡 Las entradas a primera hora (8am) o a última (5pm, viernes hasta 10pm) son la única forma de ver la Sistina sin aglomeración.</div>
+    </div>
+
+    <div class="at-card reveal">
+      <div class="at-num">04</div>
+      <div class="at-icon">🌋</div>
+      <h3>Pompei & Ercolano</h3>
+      <p>Ciudad congelada en el 79 d.C. por la erupción del Vesubio. Ercolano (Herculano) es menos conocida pero mejor conservada — los colores originales, los mosaicos intactos. Complementar ambas en un día es posible.</p>
+      <div class="at-meta"><span>📍 Napoli</span><span>🎟️ €16</span><span>⏱ Día entero</span></div>
+      <div class="at-consiglio">💡 Ercolano primero, Pompeya después. El Vesubio se puede subir a pie desde Herculano — vistas imposibles al golfo de Nápoles.</div>
+    </div>
+
+    <div class="at-card reveal">
+      <div class="at-num">05</div>
+      <div class="at-icon">🛶</div>
+      <h3>Venezia — La Ciudad Entera</h3>
+      <p>No hay una sola atracción: Venecia ES la atracción. Piazza San Marco, el Palazzo Ducale, Murano (vidrio), Burano (encaje y colores), Torcello (la laguna en su estado más puro). Perderse entre callejones es obligatorio.</p>
+      <div class="at-meta"><span>📍 Venezia</span><span>🎟️ Vaporetto €9.50</span><span>⏱ 3–5 días</span></div>
+      <div class="at-consiglio">💡 El paseo por Cannaregio a las 7am, sin turistas, es la Venecia real. Y come en los bacari del mercado di Rialto, no en Piazza San Marco.</div>
+    </div>
+
+    <div class="at-card reveal">
+      <div class="at-num">06</div>
+      <div class="at-icon">🌊</div>
+      <h3>Cinque Terre</h3>
+      <p>Cinco aldeas de colores pegadas a acantilados ligures sobre el Mediterráneo. Riomaggiore, Manarola, Corniglia, Vernazza, Monterosso. La ruta de senderismo que las une es una de las más espectaculares de Europa.</p>
+      <div class="at-meta"><span>📍 Liguria</span><span>🎟️ Pase €18</span><span>⏱ Día completo</span></div>
+      <div class="at-consiglio">💡 Evita julio-agosto completamente. Mayo o septiembre: clima perfecto, 30% menos gente. Manarola al atardecer desde el Guvano es la foto de tu vida.</div>
+    </div>
+
+    <div class="at-card reveal">
+      <div class="at-num">07</div>
+      <div class="at-icon">🏛️</div>
+      <h3>Duomo di Milano</h3>
+      <p>La catedral gótica más grande del mundo, con 135 agujas y 3400 estatuas. La terraza de las agujas al atardecer, con los Alpes en el horizonte cuando la atmósfera es clara, es un espectáculo que ningún milanés olvida.</p>
+      <div class="at-meta"><span>📍 Milano</span><span>🎟️ €5 terraza</span><span>⏱ 2h</span></div>
+      <div class="at-consiglio">💡 En el mismo día: L'Ultima Cena de Da Vinci (reserva 3 meses antes). Son solo 25 personas por turno de 15 minutos — la experiencia más íntima del arte italiano.</div>
+    </div>
+
+    <div class="at-card reveal">
+      <div class="at-num">08</div>
+      <div class="at-icon">🏖️</div>
+      <h3>Costiera Amalfitana</h3>
+      <p>La carretera de 50 km entre Salerno y Positano es de las más dramáticas del mundo. Amalfi, Ravello (con su jardín Villa Rufolo sobre el precipicio), Positano con sus casas en cascada rosa y naranja.</p>
+      <div class="at-meta"><span>📍 Campania</span><span>🎟️ Acceso libre</span><span>⏱ 2–3 días</span></div>
+      <div class="at-consiglio">💡 Alójate en Praiano, no en Positano. Mismo escenario, la mitad del precio y la autenticidad que Positano perdió hace 20 años.</div>
+    </div>
+
+    <div class="at-card reveal">
+      <div class="at-num">09</div>
+      <div class="at-icon">🌿</div>
+      <h3>Giardini di Boboli</h3>
+      <p>Los jardines del Palazzo Pitti en Florencia, trazados en el siglo XVI. Fuentes, estatuas, laberintos de setos y vistas sobre la ciudad. El jardín secreto de los Medici, donde la aristocracia florentina jugaba al ajedrez con personas.</p>
+      <div class="at-meta"><span>📍 Firenze</span><span>🎟️ €10</span><span>⏱ 2h</span></div>
+      <div class="at-consiglio">💡 La mayoría lo combina con los Uffizi. Nosotros preferimos venir aquí con un libro en la tarde y quedarnos hasta el cierre.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FLAG BAR -->
+<div class="sfb"><span style="background:#009246"></span><span style="background:#fff"></span><span style="background:#ce2b37"></span></div>
+
+<!-- ═══════════ GASTRONOMIA ═══════════ -->
+<section class="gastronomia" id="gastronomia">
+  <div class="gastro-intro">
+    <div class="gastro-intro-text">
+      <span class="section-label">Mangiare bene</span>
+      <h2 class="section-title light">La Cucina<br>Italiana</h2>
+      <div class="section-divider"></div>
+      <p>En Italia, comer no es alimentarse. Es un acto sagrado, político, familiar. Cada región tiene su idioma culinario, sus ingredientes DOC, su nonna con el secreto. Estas son las cosas que debes probar sin excusa.</p>
+    </div>
+    <div class="gastro-mega">
+      Mangia<span>come se fosse l'ultima volta</span>
+    </div>
+  </div>
+
+  <div class="gastro-grid">
+    <div class="g-item reveal">
+      <div class="g-emoji">🍕</div>
+      <h4>Pizza Napoletana</h4>
+      <p>Masa fina, bordes inflados de carbón. Tomate San Marzano, fior di latte. La Margherita de Da Michele, Nápoles, €5 — la mejor del mundo.</p>
+      <span class="g-region">Campania · Napoli</span>
+    </div>
+    <div class="g-item reveal">
+      <div class="g-emoji">🍝</div>
+      <h4>Carbonara Auténtica</h4>
+      <p>Guanciale (no panceta), Pecorino Romano, yemas de huevo, pimienta negra. Sin nata. Sin ajo. El debate nacional permanente de los romanos.</p>
+      <span class="g-region">Lazio · Roma</span>
+    </div>
+    <div class="g-item reveal">
+      <div class="g-emoji">🥩</div>
+      <h4>Bistecca Fiorentina</h4>
+      <p>Chianina a la brasa, siempre al sangue. Solo aceite, sal marina y pimienta. Medición en kilos, no gramos. El ritual carnívoro toscano.</p>
+      <span class="g-region">Toscana · Firenze</span>
+    </div>
+    <div class="g-item reveal">
+      <div class="g-emoji">🧀</div>
+      <h4>Parmigiano Reggiano</h4>
+      <p>Solo 4 provincias pueden producirlo legalmente. Mínimo 12 meses de maduración. Compra una cuña en Módena y entiende por qué hay seguros sobre él.</p>
+      <span class="g-region">Emilia · Modena</span>
+    </div>
+    <div class="g-item reveal">
+      <div class="g-emoji">🫙</div>
+      <h4>Tartufo Bianco d'Alba</h4>
+      <p>La trufa más cara del mundo. Octubre-diciembre en el Piemonte. Rallada sobre tajarin frescos, uova al burro o risotto. Un gramo vale oro.</p>
+      <span class="g-region">Piemonte · Alba</span>
+    </div>
+    <div class="g-item reveal">
+      <div class="g-emoji">🍨</div>
+      <h4>Gelato Artigianale</h4>
+      <p>Busca "artigianale" y colores naturales (el pistacho gris verdoso, no verde fluorescente). La cremosidad viene de menos aire, más ingrediente.</p>
+      <span class="g-region">Toda Italia</span>
+    </div>
+    <div class="g-item reveal">
+      <div class="g-emoji">☕</div>
+      <h4>Espresso al Bar</h4>
+      <p>De pie, 30 segundos, €1–1.30. El cappuccino solo hasta las 11am (los italianos no beben leche caliente de tarde). La moka de casa es sagrada.</p>
+      <span class="g-region">Ritual Nacional</span>
+    </div>
+    <div class="g-item reveal">
+      <div class="g-emoji">🍷</div>
+      <h4>Vinos DOC & DOCG</h4>
+      <p>Barolo y Barbaresco (el vino del rey), Brunello di Montalcino, Amarone della Valpolicella, Chianti Classico DOCG. Italia tiene 350 variedades nativas.</p>
+      <span class="g-region">Piemonte · Toscana · Veneto</span>
+    </div>
+    <div class="g-item reveal">
+      <div class="g-emoji">🫒</div>
+      <h4>Olio Extravergine DOP</h4>
+      <p>El aceite de Umbría, Sicilia y Toscana es completamente distinto entre sí. Compra siempre DOP con fecha de cosecha. Lleva dos botellas de vuelta.</p>
+      <span class="g-region">Umbria · Toscana · Sicilia</span>
+    </div>
+    <div class="g-item reveal">
+      <div class="g-emoji">🍋</div>
+      <h4>Sfusato Amalfitano</h4>
+      <p>El limón de Amalfi, el más aromático del mundo. Limoncello artesanal, granita di limone, delizia al limone. Compra los limones del mercado de Amalfi.</p>
+      <span class="g-region">Costa Amalfitana</span>
+    </div>
+    <div class="g-item reveal">
+      <div class="g-emoji">🥐</div>
+      <h4>Cornetto e Cappuccino</h4>
+      <p>El desayuno nacional. El cornetto es la brioche italiana, más suave que el croissant francés. Con crema o vuoto (vacío). Cada día, de pie en el bar.</p>
+      <span class="g-region">Tradizione Italiana</span>
+    </div>
+    <div class="g-item reveal">
+      <div class="g-emoji">🦞</div>
+      <h4>Crudo di Mare</h4>
+      <p>Ricci di mare (erizos), gamberi rossi, ostras, scampi — crudos, con limón, en los puertos de Puglia, Sicilia y Liguria. El sushi mediterráneo.</p>
+      <span class="g-region">Puglia · Sicilia · Liguria</span>
+    </div>
+  </div>
+</section>
+
+<!-- FLAG BAR -->
+<div class="sfb"><span style="background:#009246"></span><span style="background:#fff"></span><span style="background:#ce2b37"></span></div>
+
+<!-- ═══════════ RISTORANTI ═══════════ -->
+<section class="ristoranti" id="ristoranti">
+  <span class="section-label">Dove mangiare</span>
+  <h2 class="section-title">Dónde Comer<br>como un Italiano</h2>
+  <div class="section-divider"></div>
+
+  <div class="rist-grid">
+
+    <div class="r-card reveal">
+      <div class="r-top">
+        <div class="r-name">La Pergola</div>
+        <div class="r-stars">★★★ Michelin</div>
+      </div>
+      <div class="r-loc">Roma · Parioli Hills</div>
+      <p class="r-desc">Tres estrellas Michelin y las mejores vistas panorámicas de Roma. El chef Heinz Beck lleva décadas redefiniendo la alta cocina italiana. La bodega más grande de Roma.</p>
+      <p class="r-price">€€€€ — Alta cucina</p>
+      <div class="r-tags"><span class="r-tag">3 Michelin</span><span class="r-tag">Panorámica</span><span class="r-tag">Cena solo</span></div>
+      <p class="r-italiano">"Reserva con 2 meses de antelación. El menú degustación es la única opción que vale la pena."</p>
+    </div>
+
+    <div class="r-card reveal">
+      <div class="r-top">
+        <div class="r-name">Osteria Francescana</div>
+        <div class="r-stars">★★★ Michelin</div>
+      </div>
+      <div class="r-loc">Modena · Centro Storico</div>
+      <p class="r-desc">Massimo Bottura, tres veces mejor restaurante del mundo. "Oops! I dropped the lemon tart" es el postre más famoso de Italia. Una experiencia artística que reinterpreta todo lo que crees saber de la cocina italiana.</p>
+      <p class="r-price">€€€€ — Esperienza gastronomica</p>
+      <div class="r-tags"><span class="r-tag">3 Michelin</span><span class="r-tag">Mejor del Mundo</span><span class="r-tag">Reserva 6 meses</span></div>
+      <p class="r-italiano">"Si consigues reserva, cancela todo lo demás ese día. Es una vez en la vida."</p>
+    </div>
+
+    <div class="r-card reveal">
+      <div class="r-top">
+        <div class="r-name">Da Enzo al 29</div>
+        <div class="r-stars">★★★★★ Locals</div>
+      </div>
+      <div class="r-loc">Roma · Trastevere</div>
+      <p class="r-desc">La auténtica cucina romana. Carbonara, cacio e pepe, trippa alla romana, coda alla vaccinara. Sin pretensiones, sin menú con fotos, sin aire acondicionado en verano. Siempre lleno.</p>
+      <p class="r-price">€€ — Trattoria tradizionale</p>
+      <div class="r-tags"><span class="r-tag">Local</span><span class="r-tag">Auténtico</span><span class="r-tag">Sin reserva</span></div>
+      <p class="r-italiano">"Llega 30 minutos antes de que abran. Si no estás en la cola, come en otra parte."</p>
+    </div>
+
+    <div class="r-card reveal">
+      <div class="r-top">
+        <div class="r-name">Antiche Carampane</div>
+        <div class="r-stars">★★★★ Locali</div>
+      </div>
+      <div class="r-loc">Venezia · San Polo</div>
+      <p class="r-desc">Mariscos frescos del Adriático, sin menú turístico. Fritto misto, bigoli in salsa, sarde in saor, moleche. Los ingredientes llegan del mercado del Rialto cada mañana a las 6am.</p>
+      <p class="r-price">€€€ — Frutti di mare veneziani</p>
+      <div class="r-tags"><span class="r-tag">Mariscos</span><span class="r-tag">Sin turistas</span><span class="r-tag">Reserva</span></div>
+      <p class="r-italiano">"El único restaurante de Venecia donde comen los venecianos. El letrero dice 'no pizza, no lasagne'."</p>
+    </div>
+
+    <div class="r-card reveal">
+      <div class="r-top">
+        <div class="r-name">Pizzeria da Michele</div>
+        <div class="r-stars">Leggendaria</div>
+      </div>
+      <div class="r-loc">Napoli · Centro Storico</div>
+      <p class="r-desc">Desde 1870. Solo dos pizzas en el menú: Margherita y Marinara. La cola puede ser de una hora. Vale absolutamente cada minuto. Julia Roberts la inmortalizó en "Eat Pray Love".</p>
+      <p class="r-price">€ — Pizza artigianale</p>
+      <div class="r-tags"><span class="r-tag">Legendario</span><span class="r-tag">Solo 2 pizzas</span><span class="r-tag">Cola larga</span></div>
+      <p class="r-italiano">"Margherita Extra — con el doble de fior di latte. El €1.50 de diferencia más justificado del universo."</p>
+    </div>
+
+    <div class="r-card reveal">
+      <div class="r-top">
+        <div class="r-name">Trattoria Mario</div>
+        <div class="r-stars">★★★★ Fiorentini</div>
+      </div>
+      <div class="r-loc">Firenze · San Lorenzo</div>
+      <p class="r-desc">Desde 1953, mesas compartidas, sin carta fija — el menú es lo que cocinaron ese día. Bistecca Fiorentina, ribollita, lampredotto. El almuerzo de los florentinos desde siempre.</p>
+      <p class="r-price">€€ — Cucina fiorentina</p>
+      <div class="r-tags"><span class="r-tag">Mesas compartidas</span><span class="r-tag">Sin carta fija</span><span class="r-tag">Solo almuerzo</span></div>
+      <p class="r-italiano">"Solo abre a almuerzo, solo efectivo, no hay reservas. Aparece a las 12:00 o no comes."</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FLAG BAR -->
+<div class="sfb"><span style="background:#009246"></span><span style="background:#fff"></span><span style="background:#ce2b37"></span></div>
+
+<!-- ═══════════ ITINERARIOS ═══════════ -->
+<section class="itinerarios">
+  <span class="section-label">Come organizzarsi</span>
+  <h2 class="section-title light">Itinerarios<br>Recomendados</h2>
+  <div class="section-divider" style="background:var(--oro);"></div>
+
+  <div class="it-grid">
+
+    <div class="it-card reveal">
+      <div class="it-dias">5</div>
+      <div class="it-label">días · Roma Clásica</div>
+      <h3>La Ciudad Eterna</h3>
+      <ul class="it-stops">
+        <li>Coliseo + Foro Romano</li>
+        <li>Vaticano + Capilla Sixtina</li>
+        <li>Trastevere de noche</li>
+        <li>Fontana di Trevi al alba</li>
+        <li>Aperitivo en el Pigneto</li>
+        <li>Mercado de Testaccio</li>
+      </ul>
+    </div>
+
+    <div class="it-card reveal">
+      <div class="it-dias">7</div>
+      <div class="it-label">días · Norte Clásico</div>
+      <h3>Arte & Laguna</h3>
+      <ul class="it-stops">
+        <li>Milán + L'Ultima Cena</li>
+        <li>Lago di Como — 1 día</li>
+        <li>Verona (Romeo y Julieta)</li>
+        <li>Venezia — 3 días mínimo</li>
+        <li>Murano + Burano + Torcello</li>
+        <li>Tren a Florencia</li>
+      </ul>
+    </div>
+
+    <div class="it-card reveal">
+      <div class="it-dias">10</div>
+      <div class="it-label">días · Sur Profundo</div>
+      <h3>La Italia Auténtica</h3>
+      <ul class="it-stops">
+        <li>Nápoles — 2 días</li>
+        <li>Pompeya + Ercolano</li>
+        <li>Costa Amalfitana — 3 días</li>
+        <li>Ferry a Sicilia (Palermo)</li>
+        <li>Agrigento + Valle dei Templi</li>
+        <li>Taormina + Etna</li>
+      </ul>
+    </div>
+
+    <div class="it-card reveal">
+      <div class="it-dias">14</div>
+      <div class="it-label">días · Grand Tour</div>
+      <h3>Italia Completa</h3>
+      <ul class="it-stops">
+        <li>Roma — 4 días</li>
+        <li>Florencia + Toscana — 3 días</li>
+        <li>Cinque Terre — 1 día</li>
+        <li>Venezia — 3 días</li>
+        <li>Milán — 2 días</li>
+        <li>Dolomiti — 1 día</li>
+      </ul>
+    </div>
+
+    <div class="it-card reveal">
+      <div class="it-dias">7</div>
+      <div class="it-label">días · Gastronómico</div>
+      <h3>Mangiare Bene</h3>
+      <ul class="it-stops">
+        <li>Módena — Osteria Francescana</li>
+        <li>Bologna (capital del ragu)</li>
+        <li>Piemonte — trufas de Alba</li>
+        <li>Barolo + cata de vinos</li>
+        <li>Nápoles — pizza auténtica</li>
+        <li>Mercados locales cada día</li>
+      </ul>
+    </div>
+
+    <div class="it-card reveal">
+      <div class="it-dias">8</div>
+      <div class="it-label">días · Off the Beaten Path</div>
+      <h3>Italia Secreta</h3>
+      <ul class="it-stops">
+        <li>Matera — los Sassi</li>
+        <li>Alberobello + trulli</li>
+        <li>Lecce — el barroco del sur</li>
+        <li>Tropea + playas de Calabria</li>
+        <li>Civita di Bagnoregio</li>
+        <li>Val d'Orcia rural</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ CONSEJOS ═══════════ -->
+<section class="consejos" id="consejos">
+  <span class="section-label">Consigli di viaggio</span>
+  <h2 class="section-title">Consejos que un<br>Italiano te Daría</h2>
+  <div class="section-divider"></div>
+
+  <div class="conj-grid">
+
+    <div class="conj-card reveal">
+      <div class="conj-num">01</div>
+      <div class="conj-icon">📅</div>
+      <h4>Reserva todo con meses de antelación</h4>
+      <p>Uffizi, Coliseo, Vaticano, L'Ultima Cena, Osteria Francescana — todos agotan entradas semanas o meses antes. Reservar online no es opcional, es supervivencia.</p>
+    </div>
+
+    <div class="conj-card reveal">
+      <div class="conj-num">02</div>
+      <div class="conj-icon">🚂</div>
+      <h4>Viaja en tren, no en avión</h4>
+      <p>Roma–Florencia en 1h30, Roma–Nápoles en 1h05. Trenitalia Frecciarossa e Italo son puntuales, cómodos y baratos si reservas con días de antelación. El tren es parte de la experiencia.</p>
+    </div>
+
+    <div class="conj-card reveal">
+      <div class="conj-num">03</div>
+      <div class="conj-icon">🍽️</div>
+      <h4>Aléjate 2 calles de los monumentos</h4>
+      <p>La peor comida de Italia se sirve a 50 metros del Coliseo o de Piazza San Marco. Los mejores restaurantes no tienen menú con fotos, no tienen hostess en la puerta y están en calles sin nombre.</p>
+    </div>
+
+    <div class="conj-card reveal">
+      <div class="conj-num">04</div>
+      <div class="conj-icon">⏰</div>
+      <h4>Aprende el ritmo italiano</h4>
+      <p>Desayuno 7-9am. Almuerzo 13-15h (comida principal). Aperitivo 18-20h. Cena nunca antes de las 20h. Los restaurantes que abren a las 18h sirven solo a turistas — espera a las 20:30.</p>
+    </div>
+
+    <div class="conj-card reveal">
+      <div class="conj-num">05</div>
+      <div class="conj-icon">👗</div>
+      <h4>Respeta el codice vestimentario</h4>
+      <p>Para iglesias (incluido el Vaticano), hombros y rodillas cubiertos obligatoriamente. Los guardias te sacan sin negociación. Un pañuelo ligero en el bolso vale €0 y te ahorra la vergüenza.</p>
+    </div>
+
+    <div class="conj-card reveal">
+      <div class="conj-num">06</div>
+      <div class="conj-icon">💶</div>
+      <h4>Lleva efectivo siempre</h4>
+      <p>Muchas trattorias locales, mercados, bares y pequeñas tiendas siguen siendo solo efectivo. Los cajeros automáticos funcionan bien, pero usa los de los bancos, no los de las calles turísticas (comisiones abusivas).</p>
+    </div>
+
+    <div class="conj-card reveal">
+      <div class="conj-num">07</div>
+      <div class="conj-icon">🌡️</div>
+      <h4>Elige bien el mes</h4>
+      <p>Abril-junio y septiembre-octubre son los meses de oro. Julio-agosto: calor extremo, precios triplicados, colas por todo. Noviembre-marzo: frío pero auténtico, sin turistas, precios reales. Venecia en invierno es mágica.</p>
+    </div>
+
+    <div class="conj-card reveal">
+      <div class="conj-num">08</div>
+      <div class="conj-icon">🗣️</div>
+      <h4>Aprende 10 palabras en italiano</h4>
+      <p>Grazie, prego, buongiorno, permesso, scusi, quanto costa, un caffè per favore, il conto. Los italianos aprecian el esfuerzo de forma desproporcionada — te cambia el trato completamente.</p>
+    </div>
+
+    <div class="conj-card reveal">
+      <div class="conj-num">09</div>
+      <div class="conj-icon">🏘️</div>
+      <h4>No solo las grandes ciudades</h4>
+      <p>La verdad de Italia está en los pueblos: Montepulciano, Spello, Tropea, Ostuni, Cefalù, Orta San Giulio. Cada uno es un mundo. Alquila un coche una semana y conduce sin GPS — eso es Italia de verdad.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ INFO PRATICA ═══════════ -->
+<div class="info-pratica" id="info">
+  <div class="ip-left reveal">
+    <div class="ip-title">Info Pratica</div>
+    <p class="ip-sub">Todo lo esencial antes de partir</p>
+    <div class="ip-badges">
+      <div class="ip-badge"><strong>Moneda</strong><span>Euro (€)</span></div>
+      <div class="ip-badge"><strong>Idioma</strong><span>Italiano</span></div>
+      <div class="ip-badge"><strong>Mejor época</strong><span>Abr–Jun / Sep–Oct</span></div>
+      <div class="ip-badge"><strong>Zona horaria</strong><span>CET (UTC+1)</span></div>
+      <div class="ip-badge"><strong>Voltaje</strong><span>230V / Tipo C & F</span></div>
+      <div class="ip-badge"><strong>Emergencias</strong><span>112</span></div>
+      <div class="ip-badge"><strong>Visa</strong><span>Schengen (60 días)</span></div>
+      <div class="ip-badge"><strong>Propinas</strong><span>Opcional (5–10%)</span></div>
+      <div class="ip-badge"><strong>Agua del grifo</strong><span>Potable en todo el país</span></div>
+      <div class="ip-badge"><strong>Transporte</strong><span>Trenitalia + Italo</span></div>
+    </div>
+  </div>
+  <div class="ip-right reveal">
+    <div class="ip-mappa">
+      <svg viewBox="0 0 300 520" xmlns="http://www.w3.org/2000/svg" class="italy-svg">
+        <defs>
+          <linearGradient id="mapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:rgba(255,255,255,0.25)"/>
+            <stop offset="100%" style="stop-color:rgba(255,255,255,0.08)"/>
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+          </filter>
+        </defs>
+        <!-- Italia mainland simplified -->
+        <path d="M 115 20 C 95 22, 72 38, 70 62 C 68 86, 74 108, 76 132 C 78 156, 72 178, 68 202 C 64 226, 58 248, 56 268 C 54 288, 55 305, 62 318 C 69 331, 80 338, 85 330 C 92 318, 95 302, 93 288 C 91 274, 87 262, 90 250 C 95 232, 108 222, 122 218 C 138 214, 155 218, 166 228 C 177 238, 180 254, 178 268 C 176 282, 168 292, 164 302 C 156 320, 154 338, 160 348 C 166 358, 176 362, 186 356 C 196 350, 200 336, 196 322 C 192 308, 184 298, 186 286 C 190 268, 206 258, 214 244 C 222 230, 218 212, 206 202 C 194 192, 178 190, 166 186 C 154 182, 142 174, 138 158 C 134 142, 138 124, 142 104 C 146 84, 150 64, 144 44 C 138 28, 128 18, 115 20Z"
+          fill="url(#mapGrad)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <!-- Sicilia -->
+        <ellipse cx="138" cy="408" rx="45" ry="24" fill="url(#mapGrad)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+        <!-- Sardegna -->
+        <ellipse cx="48" cy="300" rx="20" ry="32" fill="url(#mapGrad)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+
+        <!-- City pins with glow -->
+        <circle cx="112" cy="200" r="7" fill="#e63946" filter="url(#glow)"/>
+        <circle cx="112" cy="200" r="3.5" fill="#fff"/>
+        <text x="122" y="205" font-family="Georgia,serif" font-size="12" fill="#fff" font-weight="bold">Roma</text>
+
+        <circle cx="100" cy="138" r="5.5" fill="#f4a261" filter="url(#glow)"/>
+        <circle cx="100" cy="138" r="2.5" fill="#fff"/>
+        <text x="110" y="143" font-family="Georgia,serif" font-size="10" fill="rgba(255,255,255,0.8)">Firenze</text>
+
+        <circle cx="140" cy="88" r="5.5" fill="#f4a261" filter="url(#glow)"/>
+        <circle cx="140" cy="88" r="2.5" fill="#fff"/>
+        <text x="150" y="93" font-family="Georgia,serif" font-size="10" fill="rgba(255,255,255,0.8)">Venezia</text>
+
+        <circle cx="140" cy="258" r="5.5" fill="#f4a261" filter="url(#glow)"/>
+        <circle cx="140" cy="258" r="2.5" fill="#fff"/>
+        <text x="150" y="263" font-family="Georgia,serif" font-size="10" fill="rgba(255,255,255,0.8)">Napoli</text>
+
+        <circle cx="136" cy="408" r="4.5" fill="#f4a261" filter="url(#glow)"/>
+        <circle cx="136" cy="408" r="2" fill="#fff"/>
+        <text x="146" y="413" font-family="Georgia,serif" font-size="9" fill="rgba(255,255,255,0.7)">Palermo</text>
+
+        <circle cx="148" cy="56" r="4.5" fill="#f4a261" filter="url(#glow)"/>
+        <circle cx="148" cy="56" r="2" fill="#fff"/>
+        <text x="158" y="61" font-family="Georgia,serif" font-size="9" fill="rgba(255,255,255,0.7)">Milano</text>
+
+        <!-- North compass -->
+        <text x="255" y="30" font-family="Georgia,serif" font-size="11" fill="rgba(255,255,255,0.3)" text-anchor="middle">N ↑</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand reveal">
+      <div class="logo">Italia Eterna</div>
+      <p>La guía honesta que un italiano le daría a un amigo. Arte, sabor, historia y la dolce vita — sin filtros turísticos.</p>
+      <div style="display:flex; gap:0.5rem; margin-top:1.5rem;">
+        <div class="footer-flag">
+          <span class="fg"></span>
+          <span class="fw"></span>
+          <span class="fr"></span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-col reveal">
+      <h5>Destinos</h5>
+      <ul>
+        <li><a href="#destinos">Roma</a></li>
+        <li><a href="#destinos">Venezia</a></li>
+        <li><a href="#destinos">Firenze</a></li>
+        <li><a href="#destinos">Napoli</a></li>
+        <li><a href="#destinos">Sicilia</a></li>
+        <li><a href="#destinos">Puglia</a></li>
+      </ul>
+    </div>
+    <div class="footer-col reveal">
+      <h5>Descubrir</h5>
+      <ul>
+        <li><a href="#segreti">Lugares Secretos</a></li>
+        <li><a href="#novedades">Novedades 2025</a></li>
+        <li><a href="#atracciones">Atracciones</a></li>
+        <li><a href="#gastronomia">Gastronomía</a></li>
+        <li><a href="#ristoranti">Restaurantes</a></li>
+        <li><a href="#consejos">Consejos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col reveal">
+      <h5>Planificar</h5>
+      <ul>
+        <li><a href="#info">Info Práctica</a></li>
+        <li><a href="#itinerarios">Itinerarios</a></li>
+        <li><a href="#">Cuándo ir</a></li>
+        <li><a href="#">Presupuesto</a></li>
+        <li><a href="#">Transporte</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-flag">
+      <span class="fg"></span>
+      <span class="fw"></span>
+      <span class="fr"></span>
+    </div>
+    <div class="footer-copy">© 2025 Italia Eterna · Guía del Viajero · Arte · Storia · Cucina · Vita</div>
+  </div>
+</footer>
+
+<!-- ═══════════ CORNER FLAG ═══════════ -->
+<div id="corner-flag">
+  <span style="background:#009246"></span>
+  <span style="background:#fff"></span>
+  <span style="background:#ce2b37"></span>
+</div>
+
+<!-- ═══════════ MODAL ═══════════ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal-box" id="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-img-placeholder" id="modal-img-wrap">
+      <img id="modal-img" class="modal-img" src="" alt="" style="display:none;">
+      <span id="modal-emoji" style="font-size:6rem;"></span>
+    </div>
+    <div class="modal-body">
+      <span class="modal-tag" id="modal-tag"></span>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <p class="modal-sub" id="modal-sub"></p>
+      <p class="modal-text" id="modal-text"></p>
+      <div class="modal-highlights" id="modal-highlights"></div>
+      <div class="modal-btns">
+        <a id="modal-maps-btn" href="#" target="_blank" class="btn-primary" style="font-size:.72rem; padding:.8rem 2rem;">📍 Ver en Google Maps</a>
+        <a href="#info" class="btn-outline" style="background:var(--verde); color:#fff; font-size:.72rem; padding:.8rem 2rem; border:none;" onclick="closeModal()">✈️ Info Práctica</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════
+   DESTINATION DATA FOR MODALS
+══════════════════════════════════════ */
+const destinos = {
+  roma: {
+    tag: 'La Città Eterna', name: 'Roma', emoji: '🏛️',
+    img: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1400&q=85',
+    sub: 'La ciudad donde cada piedra tiene 2000 años de historia',
+    text: 'Roma es la ciudad más alucinante del mundo y te lo digo como romano. No hay un solo día en que no descubres algo nuevo — una iglesia del siglo IV entre dos edificios modernos, un mercado medieval bajo un arco romano, una nonna que prepara la mejor carbonara desde 1960. El Coliseo, el Vaticano, el Trastevere de noche, la Fontana di Trevi al alba cuando aún no hay nadie. Pero también el mercado de Testaccio, los bares del Pigneto, el aperitivo en el Prati. Roma no se agota en una vida.',
+    h1l: 'Mejor época', h1v: 'Abril–Junio / Oct',
+    h2l: 'Días recomendados', h2v: '4–6 días mínimo',
+    h3l: 'No te pierdas', h3v: 'Trastevere de noche',
+    maps: 'https://www.google.com/maps/search/Roma,+Italia'
+  },
+  venecia: {
+    tag: 'La Serenissima', name: 'Venezia', emoji: '🛶',
+    img: 'https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?w=1400&q=85',
+    sub: 'La ciudad más improbable e irrepetible del mundo',
+    text: 'Venecia es un milagro de ingeniería medieval que lleva 1500 años flotando. Pero la Venecia que te venderán no es la Venecia real. Ve en noviembre o enero — con la niebla sobre el Canal Grande, sin turistas, con los venecianos de verdad en sus bacari. Piazza San Marco, el Palazzo Ducale, pero también Cannaregio a las 7am, Burano con sus casas de colores, Torcello donde la laguna parece el fin del mundo. Come en las osterias del Rialto, no en San Marco.',
+    h1l: 'Mejor época', h1v: 'Nov–Feb (sin turistas)',
+    h2l: 'Días recomendados', h2v: '3–4 días',
+    h3l: 'No te pierdas', h3v: 'Cannaregio al alba',
+    maps: 'https://www.google.com/maps/search/Venezia,+Italia'
+  },
+  florencia: {
+    tag: 'Culla del Rinascimento', name: 'Firenze', emoji: '🖼️',
+    img: 'https://images.unsplash.com/photo-1543429257-3eb0b9f5f0c6?w=1400&q=85',
+    sub: 'La ciudad donde nació el mundo moderno',
+    text: 'Florencia es la ciudad donde los Medici convirtieron el dinero en belleza — y lo consiguieron mejor que nadie. Los Uffizi, el Duomo, el Ponte Vecchio, la Galleria dell\'Accademia con el David de Miguel Ángel. Pero también el mercado de Sant\'Ambrogio donde compran los florentinos, la Trattoria Mario con mesas compartidas, los Jardines de Boboli al atardecer. Y un día entero en la Toscana: San Gimignano, Siena, el Chianti. La Fiorentina en Trattoria Mario. El gelato de Gelateria dei Neri.',
+    h1l: 'Mejor época', h1v: 'Abril–Mayo / Sept',
+    h2l: 'Días recomendados', h2v: '3–5 días',
+    h3l: 'No te pierdas', h3v: 'Piazzale Michelangelo al amanecer',
+    maps: 'https://www.google.com/maps/search/Firenze,+Italia'
+  },
+  napoles: {
+    tag: 'Caos Hermoso', name: 'Napoli', emoji: '🍕',
+    img: 'https://images.unsplash.com/photo-1555093191-a3a5c8c5e8d2?w=1400&q=85',
+    sub: 'La ciudad más italiana de todas las ciudades italianas',
+    text: 'Nápoles es la ciudad que los turistas no entienden y los italianos amamos con locura. Caótica, ruidosa, desordenada — y absolutamente mágica. La pizza más buena del mundo (Da Michele desde 1870, solo Margherita y Marinara). Los Quartieri Spagnoli con su ropa tendida entre balcones. El Museo Arqueológico Nacional, el mejor del mundo romano. Pompeya y Ercolano a 30 minutos. El Golfo di Napoli con el Vesubio al fondo. Spaccanapoli en Navidad.',
+    h1l: 'Mejor época', h1v: 'Marzo–Jun / Sept–Nov',
+    h2l: 'Días recomendados', h2v: '2–3 días base',
+    h3l: 'No te pierdas', h3v: 'Pizza Da Michele + Museo Arqueológico',
+    maps: 'https://www.google.com/maps/search/Napoli,+Italia'
+  },
+  amalfi: {
+    tag: 'Paradiso sul Mare', name: 'Costa Amalfitana', emoji: '🌊',
+    img: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=1400&q=85',
+    sub: 'La carretera más espectacular de Europa',
+    text: 'La Costiera Amalfitana es esa Italia de postal que resulta ser exactamente tan bella en persona. 50 km de acantilados, limoneros, pueblos de colores pegados a las rocas sobre el Mediterráneo más azul que has visto. Positano es el más famoso (y el más caro). Alójate en Praiano — mismo espectáculo, mitad del precio. Ravello, arriba en la montaña, tiene los jardines de Villa Rufolo con vistas imposibles. Toma el ferry entre los pueblos en lugar del autobús.',
+    h1l: 'Mejor época', h1v: 'Mayo–Jun / Sept',
+    h2l: 'Días recomendados', h2v: '2–4 días',
+    h3l: 'No te pierdas', h3v: 'Ravello al atardecer + ferry Positano–Amalfi',
+    maps: 'https://www.google.com/maps/search/Costa+Amalfitana,+Italia'
+  },
+  toscana: {
+    tag: 'Il Cuore Verde', name: 'Toscana Rural', emoji: '🌿',
+    img: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=1400&q=85',
+    sub: 'Las colinas más hermosas del mundo, con el mejor vino del planeta',
+    text: 'La Toscana rural no es Florencia — es lo que hay entre Florencia y Roma. El Val d\'Orcia con sus cipreses en fila y sus colinas onduladas. Montalcino, donde nace el Brunello. Montepulciano sobre su colina. Pienza con su Pecorino. Siena y la Piazza del Campo. San Gimignano con sus torres medievales. Alquila un agriturismo una semana y haz base allí — cada día un pueblo diferente, cada comida un descubrimiento. Esto es la dolce vita de verdad.',
+    h1l: 'Mejor época', h1v: 'Abr–Jun / Sept–Oct',
+    h2l: 'Días recomendados', h2v: '5–7 días (lento)',
+    h3l: 'No te pierdas', h3v: 'Val d\'Orcia + Bagno Vignoni',
+    maps: 'https://www.google.com/maps/search/Val+d\'Orcia,+Toscana,+Italia'
+  },
+  sicilia: {
+    tag: 'Il Sud Profondo', name: 'Sicilia', emoji: '🌋',
+    img: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1400&q=85',
+    sub: 'La isla más grande del Mediterráneo, con 3000 años de civilizaciones superpuestas',
+    text: 'Sicilia no es solo Italia — es Grecia, Roma, los Árabes, los Normandos, los Borbones, todos mezclados en un carácter único. Palermo con su mercado de la Vucciria, el arancino, la pasta alla Norma. El Valle dei Templi de Agrigento — los templos griegos mejor conservados del mundo. Taormina sobre el mar con el Etna al fondo. La costa de Noto, el barroco de Ragusa. Las playas de Cefalù. La granita di limone a las 7am. Sicilia cambia a la gente.',
+    h1l: 'Mejor época', h1v: 'Abril–Jun / Sept–Oct',
+    h2l: 'Días recomendados', h2v: '7–10 días',
+    h3l: 'No te pierdas', h3v: 'Valle dei Templi al amanecer + Mercato Vucciria',
+    maps: 'https://www.google.com/maps/search/Sicilia,+Italia'
+  },
+  puglia: {
+    tag: 'Trending 2025', name: 'Puglia', emoji: '🏡',
+    img: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?w=1400&q=85',
+    sub: 'El tacón de la bota — el secreto mejor guardado de Italia',
+    text: 'Puglia es la respuesta italiana a la Provenza francesa, pero más auténtica y más barata. Lecce, el "Barco de Piedra", con su barroco calcáreo dorado. Alberobello con sus trulli únicos en el mundo. Ostuni, la ciudad blanca sobre la colina. Las masserias — granjas convertidas en hoteles de lujo. La burrata fresca en Andria, el crudo di mare en Gallipoli, los orecchiette con cime di rapa. El agua del Salento tan turquesa que parece Caribe. Y precios de hace 20 años.',
+    h1l: 'Mejor época', h1v: 'Mayo–Jun / Sept',
+    h2l: 'Días recomendados', h2v: '5–7 días',
+    h3l: 'No te pierdas', h3v: 'Alberobello al anochecer + burrata en Andria',
+    maps: 'https://www.google.com/maps/search/Puglia,+Italia'
+  },
+  lago: {
+    tag: 'Eleganza Italiana', name: 'Lago di Como', emoji: '⛵',
+    img: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1400&q=85',
+    sub: 'El lago más elegante del mundo, desde los romanos hasta George Clooney',
+    text: 'El Lago di Como es donde los romanos tenían sus villas de descanso — Plinio el Joven escribía cartas desde aquí. Los Borromeo, los Medici, y hoy George Clooney en Laglio. Bellagio, la "perla del lago", con sus callejones empedrados. Varenna, menos conocida y más auténtica. Villa del Balbianello, la villa más fotogénica del mundo. El ferry entre los pueblos. Después, el Lago Maggiore con las Isole Borromee, y el Lago di Garda para quien quiera playa.',
+    h1l: 'Mejor época', h1v: 'Mayo–Jun / Sept',
+    h2l: 'Días recomendados', h2v: '2–3 días',
+    h3l: 'No te pierdas', h3v: 'Villa del Balbianello + ferry entre pueblos',
+    maps: 'https://www.google.com/maps/search/Lago+di+Como,+Italia'
+  }
+};
+
+/* ══════════════════════════════════════
+   MODAL FUNCTIONS
+══════════════════════════════════════ */
+function openModal(id) {
+  const d = destinos[id];
+  if (!d) return;
+  document.getElementById('modal-tag').textContent = d.tag;
+  document.getElementById('modal-title').textContent = d.name;
+  document.getElementById('modal-sub').textContent = d.sub;
+  document.getElementById('modal-text').textContent = d.text;
+  document.getElementById('modal-emoji').textContent = d.emoji;
+  const img = document.getElementById('modal-img');
+  const wrap = document.getElementById('modal-img-wrap');
+  img.src = d.img;
+  img.alt = d.name;
+  img.style.display = 'block';
+  wrap.querySelector('span').style.display = 'none';
+  img.onerror = () => { img.style.display='none'; wrap.querySelector('span').style.display='block'; };
+  document.getElementById('modal-highlights').innerHTML = `
+    <div class="modal-hl"><strong>${d.h1l}</strong><span>${d.h1v}</span></div>
+    <div class="modal-hl"><strong>${d.h2l}</strong><span>${d.h2v}</span></div>
+    <div class="modal-hl"><strong>${d.h3l}</strong><span>${d.h3v}</span></div>
+  `;
+  document.getElementById('modal-maps-btn').href = d.maps;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+/* ══════════════════════════════════════
+   CUSTOM CURSOR
+══════════════════════════════════════ */
+const dot = document.getElementById('dot');
+const ring = document.getElementById('ring');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  dot.style.left = mouseX + 'px';
+  dot.style.top  = mouseY + 'px';
+});
+(function loop() {
+  ringX += (mouseX - ringX) * 0.14;
+  ringY += (mouseY - ringY) * 0.14;
+  ring.style.left = ringX + 'px';
+  ring.style.top  = ringY + 'px';
+  requestAnimationFrame(loop);
+})();
+document.querySelectorAll('a,button,.dm,.at-card,.r-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    ring.style.width = '56px'; ring.style.height = '56px';
+    ring.style.borderColor = 'rgba(185,0,31,0.8)';
+  });
+  el.addEventListener('mouseleave', () => {
+    ring.style.width = '36px'; ring.style.height = '36px';
+    ring.style.borderColor = 'rgba(185,0,31,0.5)';
+  });
+});
+
+/* ══════════════════════════════════════
+   SCROLL FLAG PARTICLE SYSTEM
+══════════════════════════════════════ */
+const FLAG_COLORS = ['#009246','#ffffff','#ce2b37'];
+let lastScrollY = 0, scrollVelocity = 0, lastFlagTime = 0;
+let totalScrolled = 0;
+
+function spawnFlag(x, y, size, rot, delay, dur) {
+  const f = document.createElement('div');
+  f.className = 'scroll-flag-particle';
+  f.style.cssText = `left:${x}px; top:${y}px; width:${size*3}px; height:${size*2}px; --rot:${rot}deg; --dur:${dur}s; animation-delay:${delay}s;`;
+  FLAG_COLORS.forEach(c => {
+    const s = document.createElement('span');
+    s.style.background = c;
+    f.appendChild(s);
+  });
+  document.body.appendChild(f);
+  setTimeout(() => f.remove(), (dur + delay) * 1000 + 100);
+}
+
+function spawnSectionFlag() {
+  // Spawn a burst of flags when crossing section boundaries
+  const vw = window.innerWidth, vh = window.innerHeight;
+  const sides = ['left','right'];
+  sides.forEach(side => {
+    const x = side === 'left' ? Math.random() * 120 : vw - 120 + Math.random() * 80;
+    for (let i = 0; i < 3; i++) {
+      setTimeout(() => {
+        spawnFlag(
+          x + (Math.random()-0.5)*40,
+          vh * (0.2 + Math.random() * 0.6),
+          8 + Math.random()*12,
+          (Math.random()-0.5)*25,
+          0,
+          2 + Math.random()
+        );
+      }, i * 180);
+    }
+  });
+}
+
+function spawnScrollFlag(scrollDir) {
+  const now = Date.now();
+  if (now - lastFlagTime < 350) return;
+  lastFlagTime = now;
+  const vw = window.innerWidth;
+  const side = Math.random() > 0.5 ? 'left' : 'right';
+  const x = side === 'left' ? 10 + Math.random()*60 : vw - 70 + Math.random()*40;
+  const y = window.innerHeight * (0.15 + Math.random() * 0.7);
+  spawnFlag(x, y, 6 + Math.random()*8, (Math.random()-0.5)*20, 0, 2 + Math.random()*0.8);
+}
+
+/* Section crossing detection */
+const allSections = document.querySelectorAll('section, .stats-bar, .intro-section, .info-pratica');
+let lastSection = null;
+function checkSectionCross() {
+  let cur = null;
+  allSections.forEach(s => {
+    const rect = s.getBoundingClientRect();
+    if (rect.top <= 10 && rect.bottom > 10) cur = s;
+  });
+  if (cur && cur !== lastSection) {
+    lastSection = cur;
+    spawnSectionFlag();
+  }
+}
+
+window.addEventListener('scroll', () => {
+  const sy = window.scrollY;
+  scrollVelocity = Math.abs(sy - lastScrollY);
+  totalScrolled += scrollVelocity;
+
+  // Nav
+  nav.classList.toggle('scrolled', sy > 60);
+
+  // Progress bar
+  const h = document.documentElement;
+  const pct = (sy / (h.scrollHeight - h.clientHeight)) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+
+  // Back to top
+  document.getElementById('back-top').classList.toggle('visible', sy > 400);
+
+  // Corner flag
+  document.getElementById('corner-flag').classList.toggle('visible', sy > 300);
+
+  // Spawn scroll flags on fast scroll
+  if (scrollVelocity > 18) spawnScrollFlag(sy > lastScrollY ? 1 : -1);
+
+  // Watermark parallax
+  if (wm) wm.style.transform = `translateY(calc(-50% + ${sy * 0.3}px))`;
+
+  // Section cross
+  checkSectionCross();
+
+  lastScrollY = sy;
+}, {passive:true});
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+const nav = document.getElementById('navbar');
+const wm = document.querySelector('.hero-watermark');
+
+/* ══════════════════════════════════════
+   REVEAL ON SCROLL
+══════════════════════════════════════ */
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 90);
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ══════════════════════════════════════
+   COUNTER ANIMATION
+══════════════════════════════════════ */
+function animateNum(el, target, suffix='') {
+  let n = 0;
+  const step = target / 60;
+  const t = setInterval(() => {
+    n = Math.min(n + step, target);
+    el.textContent = Math.floor(n) + suffix;
+    if (n >= target) clearInterval(t);
+  }, 16);
+}
+const numObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.stat-num').forEach(el => {
+        const txt = el.textContent;
+        const num = parseInt(txt);
+        const sfx = txt.replace(/[0-9]/g,'');
+        animateNum(el, num, sfx);
+      });
+      numObs.unobserve(e.target);
+    }
+  });
+}, {threshold:0.5});
+const statsBar = document.querySelector('.stats-bar');
+if (statsBar) numObs.observe(statsBar);
+
+/* ══════════════════════════════════════
+   ACTIVE NAV HIGHLIGHT
+══════════════════════════════════════ */
+const sections2 = document.querySelectorAll('section[id], div[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections2.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 130) current = s.id;
+  });
+  navLinks.forEach(a => {
+    const href = a.getAttribute('href').replace('#','');
+    a.style.color = href === current ? 'var(--oro)' : '';
+  });
+}, {passive:true});
+
+/* ══════════════════════════════════════
+   FLAG BAR ANIMATION ON VIEWPORT ENTER
+══════════════════════════════════════ */
+const flagBars = document.querySelectorAll('.sfb');
+const fbObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      el.style.transition = 'transform .6s cubic-bezier(.22,1,.36,1)';
+      // Animate each stripe in sequence
+      const spans = el.querySelectorAll('span');
+      spans.forEach((sp, i) => {
+        sp.style.transform = 'scaleX(0)';
+        sp.style.transformOrigin = 'left';
+        sp.style.transition = `transform .5s ${i * 0.12}s cubic-bezier(.22,1,.36,1)`;
+        requestAnimationFrame(() => { sp.style.transform = 'scaleX(1)'; });
+      });
+      fbObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+flagBars.forEach(el => {
+  // Init hidden
+  el.querySelectorAll('span').forEach(s => { s.style.transform='scaleX(0)'; s.style.transformOrigin='left'; });
+  fbObs.observe(el);
+});
+
+/* ══════════════════════════════════════
+   FOOTER LINKS → SECTIONS
+══════════════════════════════════════ */
+document.querySelectorAll('.footer-col a[href="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
