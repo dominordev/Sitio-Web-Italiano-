@@ -1,0 +1,56 @@
+/* Contenedor del form */
+#newsletter-form {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* Wrapper */
+.nl-form-wrap {
+  display: flex;
+  gap: 10px;
+  background: #ffffff;
+  padding: 8px;
+  border-radius: 50px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Inputs */
+#newsletter-form input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 12px 15px;
+  border-radius: 50px;
+  font-size: 14px;
+}
+
+/* Botón */
+.nl-submit {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+/* Hover */
+.nl-submit:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .nl-form-wrap {
+    flex-direction: column;
+    border-radius: 20px;
+  }
+
+  .nl-submit {
+    width: 100%;
+  }
+}
